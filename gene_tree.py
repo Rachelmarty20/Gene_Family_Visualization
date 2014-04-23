@@ -8,6 +8,9 @@
 
 #clustalw?
 #biopython hierarchical clustering?
+	#http://biopython.org/DIST/docs/tutorial/Tutorial.html#sec300
+	#treecluster from biopython
+	#or scipy for heirachical clustering and convert to json http://blog.nextgenetics.net/?e=44
 #how am I going to get any of these formats to json??? or can d3 read xml?
 #json has a converter between xml and json
 #can also combine objects into arrays

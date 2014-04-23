@@ -1,75 +1,69 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>D3 Test</title>
-        <script type="text/javascript" src="D3/D3.v3.js"></script>
-        <style type="text/css">
-          div.bar {
-              display: inline-block;
-              width: 20px;
-              height: 75px;   /* We'll override this later */
-              background-color: teal;
-              margin-right: 2px;
-          }
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-          svg .pumpkin {
-            fill: yellow;
-            stroke: orange;
-            stroke-width: 5;
-          }
+    <title>Gene Family Test App</title>
 
-        </style>
-    </head>
-    <body>
-        <script type="text/javascript">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
-          var w = 500;
-          var h = 50; 
+    <!-- Custom styles for this template -->
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-          var dataset = [ 5, 10, 15, 20, 25 ];
-          /*
-          d3.select("body").selectAll("div")
-            .data(dataset)
-            .enter()
-            .append("div")
-            .attr("class", "bar")
-            .style("height", function(d) {
-              var barHeight = d * 5;  //Scale up by factor of 5
-              return barHeight + "px";
-            });
-            */
-          var svg = d3.select("body")
-            .append("svg")
-            .attr("width", 500)
-            .attr("height", 50);
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-          var circle = svg.selectAll("circle")
-            .data(dataset)
-            .enter()
-            .append("circle");
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-          circles.attr("cx", function(d, i) {
-                return (i * 50) + 25;
-            })
-           .attr("cy", h/2)
-           .attr("r", function(d) {
-                return d;
-           })
-           .attr("fill", "yellow")
-            .attr("stroke", "orange")
-            .attr("stroke-width", function(d) {
-                return d/2;
-            });
+  <body>
 
-        </script>
-        <!--
-        <p>
-          <svg width="500" height="50">
-            <circle cx="25" cy="25" r="22" class="pumpkin"/>
-          </svg>   
-        </p>
-        -->
-    </body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Gene Family Test App</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Gene Family Test App</h1>
+        <p class="lead">Introduction Paragraph</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+      </div>
+
+      <form role="form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Gene</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+        </div>
+        
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+
+      <div class="footer">
+        <p>&copy; Rachel Marty 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
 </html>
