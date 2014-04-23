@@ -6,9 +6,9 @@
 #output: gene information and gene family information
 
 import MySQLdb
-import bio
+import Bio
 import os
-from bio import entrez
+from Bio import Entrez
 
 #gene will eventually become an input parameter
 gene = 'CDH10'
@@ -21,32 +21,34 @@ cursor = db.cursor()
 
 #find all gene families to which the gene belongs
 families = []
-sql_fam = "SELECT gene_family FROM gene_fam WHERE gene = %s;" % (gene)
+sql_fam = "SELECT family_abrev FROM gene_fam WHERE gene = " + "'" + gene + "'" + ";"
 try:
    # Execute the SQL command
    cursor.execute(sql_fam)
    # Fetch all the rows in a list
    results = cursor.fetchall()
    for row in results:
-      families.append(row)
+      families.append(row[0])
+      print row[0]
 except:
-   print "Error: unable to fecth data"
+   print "Error: unable to fetch data"
 
 #store first family
 family_1 = families[0]
 
 #return all of the genes within the same gene family as the origninal gene
 genes = []
-sql_genes = "SELECT gene FROM gene_fam WHERE family_name = %s;" % (family_1)
 try:
-   # Execute the SQL command
-   cursor.execute(sql_genes)
-   # Fetch all the rows in a list
-   results = cursor.fetchall()
-   for row in results:
-       genes.append(row)
+	sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family_1 + "'" + ";"
+   	# Execute the SQL command
+	cursor.execute(sql_genes)
+	# Fetch all the rows in a list
+	results = cursor.fetchall()
+	for row in results:
+		genes.append(row[0])
+		print row[0]
 except:
-   print "Error: unable to fecth data"
+   print "Error: unable to fetch data"
 
 db.close()
 
@@ -56,6 +58,7 @@ db.close()
 		maybe do a separate rna, dna and protein comparisons for sequences? 
 		http://biopython.org/DIST/docs/tutorial/Tutorial.html#sec118
 		gives directions to pull related information from other databases
+		json, python converter
 '''
 # create data structure or send to mysql db?
 gene_orig = [] # gene name, chromosome, start loc, end loc, description, ect. 
@@ -109,4 +112,4 @@ for i in genes:
 	var_5 = record[0]["Summary"] # summary
 	gene_comp.append([var_1, var_2, var_3, var_4, var_5])
 
-return gene_orig, gene_comp
+print gene_orig, gene_comp
