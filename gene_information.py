@@ -10,7 +10,7 @@ import Bio
 import os
 from Bio import Entrez
 
-def gene_information(gene):
+def gene_information(gene1):
 
 	#gene will eventually become an input parameter
 	gene = 'CDH10'

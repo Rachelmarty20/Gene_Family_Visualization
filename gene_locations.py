@@ -3,7 +3,6 @@ import cgi
 print "Content-type: text/html\n\n"
 
 
-
 print "<html> Hello world!</html>"
 
 #Script to find locations of genes in genome
