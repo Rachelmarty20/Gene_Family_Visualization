@@ -70,7 +70,7 @@
       var link = svg.selectAll(".link"),
           node = svg.selectAll(".node");
 
-      d3.json("flare.json", function(json) {
+      d3.json("storage.json", function(json) {
         root = json;
         update();
       });
