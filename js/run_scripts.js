@@ -16,7 +16,7 @@
           $('#gene-info').click(function(e){
             var url = '/Gene_Family_Visualization/bin/gene_information.py';
             $.ajax({
-                  type: "POST",
+                  type: "GET",
                   url: url, 
             }).done(function(results){
                   alert("getting content");
