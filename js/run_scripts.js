@@ -1,6 +1,6 @@
  $(function() {
            $('#run-python').click(function(e){
-               var url = '/Gene_Family_Visualization/bin/gene_information.py';
+               var url = '/Gene_Family_Visualization/bin/gene_locations.py';
                $.ajax({
                        type: "GET",
                        url: url,
@@ -12,6 +12,16 @@
           });
        });
 
- $(function) {
-
- }
+ $(function() {
+          $('#gene-info').click(function(e){
+            var url = '/Gene_Family_Visualization/bin/gene_information.py';
+            $.ajax({
+                  type: "POST",
+                  url: url, 
+            }).done(function(results){
+                  alert("getting content");
+                  console.log(results)
+                  $('#ajax-div').empty().append(results);
+            });
+          });
+ });
