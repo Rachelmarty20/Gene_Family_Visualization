@@ -1,4 +1,7 @@
-#! ~/anaconda/bin/python
+#!/usr/bin/python
+import cgi
+print "Content-type: text/html\n\n"
+
 
 #script to create list of information on a gene family
 
@@ -10,7 +13,7 @@ import Bio
 import os
 from Bio import Entrez
 
-def gene_information(gene1):
+#def gene_information(gene1):
 
 	#gene will eventually become an input parameter
 	gene = 'CDH10'
@@ -114,6 +117,6 @@ def gene_information(gene1):
 		var_5 = record[0]["Summary"] # summary
 		gene_comp.append([var_1, var_2, var_3, var_4, var_5])
 
-	return gene_orig, gene_comp
+	print gene_orig, gene_comp
 
 
