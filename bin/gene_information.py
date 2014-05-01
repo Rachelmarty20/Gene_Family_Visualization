@@ -12,6 +12,7 @@ import MySQLdb
 import Bio
 import os
 from Bio import Entrez
+import gene_locations
 
 
 
@@ -95,7 +96,7 @@ def gene_information(gene):
 	gene_orig.append(int(record[0]["GenomicInfo"][0]["ChrLoc"])) # chromosome
 	gene_orig.append(int(record[0]["GenomicInfo"][0]["ChrStart"])) # start loc
 	gene_orig.append(int(record[0]["GenomicInfo"][0]["ChrStop"])) # end loc
-	gene_orig.append(record[0]["Summary"]) # description
+#	gene_orig.append(record[0]["Summary"]) # description
 
 
 	#create data structure or send to mysql db?
@@ -116,11 +117,15 @@ def gene_information(gene):
 		var_2 = int(record[0]["GenomicInfo"][0]["ChrLoc"]) # chromosome
 		var_3 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
-		var_5 = record[0]["Summary"] # summary
-		gene_comp.append([var_1, var_2, var_3, var_4, var_5])
+#		var_5 = record[0]["Summary"] # summary
+		gene_comp.append([var_1, var_2, var_3, var_4])
 
-#	return gene_orig, gene_comp
- 	print gene_orig
+	gene_seqs = gene_locations.get_seqs(gene_comp)
+
+	return gene_orig, gene_comp
+ 	
+
+# 	Goal: return a json object
 
 #call main method
 if __name__ == '__main__':
