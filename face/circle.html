@@ -53,7 +53,7 @@
         <h3 class="text-muted">Genolution</h3>
       </div>  
 
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../vendor/D3.v3.js"></script>
     <script>
       var width = 960,
           height = 500,
@@ -70,7 +70,7 @@
       var link = svg.selectAll(".link"),
           node = svg.selectAll(".node");
 
-      d3.json("storage.json", function(json) {
+      d3.json("../data/storage.json", function(json) {
         root = json;
         update();
       });
