@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link href="vendor/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/jumbotron-narrow.css" rel="stylesheet">
+    <script src="vendor/D3.v3.js" charset="utf-8"></script>
+    <script src="vendor/jquery-ui-1.10.4"></script>
+    <script src="vendor/jquery-1.11.0.min.js"></script>
+    <script src="js/run_scripts.js"></script>
+    <title>Genolution</title>
+    <!--create vendors file-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="./index.html">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Genolution</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Gene Evolution Visualized</h1>
+        <p class="lead">Studying a gene? Find out where similar genes are located in the human genome and how closely they are related.</p>
+        <p><a class="btn btn-lg btn-success" href="./circle.html" role="button">See an example!</a></p>
+      </div>
+
+      <form role="form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Gene</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter a gene">
+        </div>
+        <button id="run-python" type="button" class="btn btn-lg btn-default">Execute Me!</button>
+          <div id="ajax-div"></div>
+        <!--button type="button" id="run-python" /button>
+        <button type="submit" class="btn btn-default">Submit</button-->
+      </form>
+
+
+      <!--
+        <input type="text" name="name" id="name">
+        <button type="button" id="home" onclick="validate()" value="checkvalue">
+        <script>
+        $('#id').click(function(){
+
+         $.ajax({
+              type:'get',
+              url:<YOUR SERVERSIDE PAGE URL>,
+              cache:false,
+              data:<if any arguments>,
+              async:asynchronous,
+              dataType:json, //if you want json
+              success: function(data) {
+                <put your custom validation here using the response from data structure >
+            }
+              error:functionfunction(data) {
+                <put your custom code here to handle the call failure>
+            }
+           }
+         );
+        });
+</script>
+      
+    -->
+
+
+
+      <div class="footer">
+        <p>&copy; Rachel Marty 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+</html>
