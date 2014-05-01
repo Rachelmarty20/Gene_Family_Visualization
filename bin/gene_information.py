@@ -117,6 +117,6 @@ from Bio import Entrez
 		var_5 = record[0]["Summary"] # summary
 		gene_comp.append([var_1, var_2, var_3, var_4, var_5])
 
-	print gene_orig, gene_comp
-
+#	return gene_orig, gene_comp
+ print gene_orig
 
