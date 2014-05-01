@@ -13,10 +13,12 @@ import Bio
 import os
 from Bio import Entrez
 
-#def gene_information(gene1):
+
+
+def gene_information(gene):
 
 	#gene will eventually become an input parameter
-	gene = 'CDH10'
+#	gene = 'CDH10'
 
 	#connect to db
 	db = MySQLdb.connect("localhost","root","quaker22","gene" )
@@ -34,7 +36,7 @@ from Bio import Entrez
 	   results = cursor.fetchall()
 	   for row in results:
 	      families.append(row[0])
-	      print row[0]
+#	      print row[0]
 	except:
 	   print "Error: unable to fetch data"
 
@@ -51,7 +53,7 @@ from Bio import Entrez
 		results = cursor.fetchall()
 		for row in results:
 			genes.append(row[0])
-			print row[0]
+#			print row[0]
 	except:
 	   print "Error: unable to fetch data"
 
@@ -118,5 +120,11 @@ from Bio import Entrez
 		gene_comp.append([var_1, var_2, var_3, var_4, var_5])
 
 #	return gene_orig, gene_comp
- print gene_orig
+ 	print gene_orig
+
+#call main method
+if __name__ == '__main__':
+        gene_information('CDH10')
+
+
 
