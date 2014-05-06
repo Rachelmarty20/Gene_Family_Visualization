@@ -77,7 +77,10 @@ for family in families:
 		# create variables to hold data to insert
 		var_1 = int(uid_comp)
 		var_2 = i # name of gene
-		var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
+		if "ChrLoc" in record[0]["GenomicInfo"][0]:
+			var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
+		else 
+		var_3 = ''
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
