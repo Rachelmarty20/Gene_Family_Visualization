@@ -38,9 +38,9 @@ for family in families:
 	sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
 	
 	try:
-    	cursor.execute(sql_tables)
-    	db.commit()
-    	print family
+		cursor.execute(sql_tables)
+		db.commit()
+		print family
 	except:
 		db.rollback()	
 
@@ -59,8 +59,6 @@ for family in families:
 	except:
 	   print "Error: unable to fetch data"
 
-	db.close()
-
 	# enter entrez
 	Entrez.email = "ramarty@ucsd.edu"
 
@@ -77,37 +75,64 @@ for family in families:
 		# set as record
 		record = Entrez.read(handle)
 		# create variables to hold data to insert
-		var_1 = uid_comp
+		var_1 = int(uid_comp)
 		var_2 = i # name of gene
 		var_3 = int(record[0]["GenomicInfo"][0]["ChrLoc"]) # chromosome
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
-		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES (" + var_1 + ", " + var_2 + ", " + var_3 + ", " + var_4 + ", " + var_5 + ", " var_6 + ");"
+		print var_1
+		print var_2
+		print var_3
+		print var_4
+		print var_5
+		print var_6
+		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%d', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
 		try:
-	    	cursor.execute(sql_family)
-	    	db.commit()
-	    except:
-	    	db.rollback()	
-	
+			cursor.execute(sql_family)
+			db.commit()
+		except:
+			db.rollback()	
+		'''
 		# drop table if exists
-		sql_drop = "DROP TABLE " + seq + ";"
+		sql_drop = "DROP TABLE " + i + ";"
 		# create a table for each gene to hold sequences
-		sql_tables = "CREATE TABLE " + "'" + seq + "'" + "(nuc_seq nvarchar(MAX), aa_seq nvarchar(MAX));"
+		sql_tables = "CREATE TABLE " + "'" + i + "'" + "(nuc_seq nvarchar(MAX), aa_seq nvarchar(MAX));"
+		try:
+			cursor.execute(sql_family)
+			db.commit()
+		except:
+			db.rollback()
 		# find ids in nucleotide database
-		handle = Entrez.elink.read(Entrez.elink(dbfrom="gene", db="nucleotide", id=uid_comp))
+		handle = Entrez.elink(dbfrom="gene", db="nuccore", id=uid_comp)
 		record = Entrez.read(handle)
 		num_of_seqs = len(record[0][u'LinkSetDb'][0][u'Link'])
-		for seq in record[0][u'LinkSetDb'][0][u'Link']):
-			seq_id seq[u'Id']
-			handle_seq = Entrez.efetch(db="nucleotide", id=seq_id, rettype="gb", retmode="XML")
-			record_seq = Entrez.read(handle_seq)
-			nuc_seq = record_seq[0][u'GBSeq_sequence']
-			aa_seq = record[0][u'GBSeq_feature-table'][5][u'GBFeature_quals'][9][u'GBQualifier_value'] 
-			sql_seq = "INSERT INTO " + "'" + seq + "'" + " (nuc_seq, aa_seq) VALUES (" + nuc_seq + ", " + aa_seq + ");"
+		print num_of_seqs
+		for seq in record[0][u'LinkSetDb'][0][u'Link']:
+			seq_id = seq[u'Id']
+			print seq_id 
+			if seq_id != '568815361':
+				handle = Entrez.efetch(db="nuccore", id=seq_id, rettype="XML", retmode="XML") #rettype was gb
+				record_seq = Entrez.read(handle, validate = False)
+				#nuc_seq = record_seq[0][u'GBSeq_sequence']
+				if record_seq[u'Bioseq-set_seq-set'][0].has_key(u'Seq-entry_set'):
+					print "in loop"
+					nuc_seq = record_seq[u'Bioseq-set_seq-set'][0][u'Seq-entry_set'][u'Bioseq-set'][u'Bioseq-set_seq-set'][0][u'Seq-entry_seq'][u'Bioseq'][u'Bioseq_inst'][u'Seq-inst'][u'Seq-inst_seq-data'][u'Seq-data'][u'Seq-data_iupacna'][u'IUPACna']
+					print nuc_seq
+					#aa_seq = record_seq[0][u'GBSeq_feature-table'][5][u'GBFeature_quals'][9][u'GBQualifier_value'] 
+					aa_seq = record_seq[u'Bioseq-set_seq-set'][0][u'Seq-entry_set'][u'Bioseq-set'][u'Bioseq-set_seq-set'][1][u'Seq-entry_seq'][u'Bioseq'][u'Bioseq_inst'][u'Seq-inst'][u'Seq-inst_seq-data'][u'Seq-data'][u'Seq-data_iupacaa'][u'IUPACaa']
+					print aa_seq
+					sql_seq = "INSERT INTO " + "'" + seq + "'" + " (nuc_seq, aa_seq) VALUES (" + nuc_seq + ", " + aa_seq + ");"
+					try:
+						cursor.execute(sql_family)
+						db.commit()
+					except:
+						db.rollback()
+'''
+db.close()
 
-	gene_seqs = gene_locations.get_seqs(gene_comp)
 
-	return gene_orig, gene_comp
+#[{u'Id': '608785222'}, {u'Id': '608785220'}, {u'Id': '608785218'}, {u'Id': '578809822'}, {u'Id': '568815593'}, {u'Id': '568815331'}, {u'Id': '528476642'}, {u'Id': '528475572'}, {u'Id': '299115949'}, {u'Id': '219519609'}, {u'Id': '162319315'}, {u'Id': '157734151'}, {u'Id': '157696490'}, {u'Id': '157169617'}, {u'Id': '71515362'}, {u'Id': '18873825'}, {u'Id': '16258977'}, {u'Id': '6483302'}]
+	
  	
