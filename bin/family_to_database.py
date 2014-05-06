@@ -19,31 +19,30 @@ cursor = db.cursor()
 
 #create an array of gene families to traverse later
 families = []
-	sql_fam = "SELECT distinct family_abrev FROM gene_fam;"
-	try:
-	   # Execute the SQL command
-	   cursor.execute(sql_fam)
-	   # Fetch all the rows in a list
-	   results = cursor.fetchall()
-	   for row in results:
-	      families.append(row[0])
-#	      print row[0]
-	except:
-	   print "Error: unable to fetch data"
+sql_fam = "SELECT distinct family_abrev FROM gene_fam;"
+try:
+   # Execute the SQL command
+   cursor.execute(sql_fam)
+   # Fetch all the rows in a list
+   results = cursor.fetchall()
+   for row in results:
+      families.append(row[0])
+#     print row[0]
+except:
+	print "Error: unable to fetch data"
 
 for family in families:
 	# drop table if already exists
 	sql_drop = "DROP TABLE " + family + ";"
 	# create a table in the database with the abreviated family name
-    sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
-
-    try:
+	sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
+	
+	try:
     	cursor.execute(sql_tables)
     	db.commit()
     	print family
-
-    except:
-    	db.rollback()	
+	except:
+		db.rollback()	
 
 
 	#return all of the genes within the same gene family as the origninal gene
