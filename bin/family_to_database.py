@@ -16,7 +16,7 @@ db = MySQLdb.connect("localhost","root","quaker22","gene" )
 
 #setup cursor
 cursor = db.cursor()
-'''
+
 #create an array of gene families to traverse later
 families = []
 sql_fam = "SELECT distinct family_abrev FROM gene_fam;"
@@ -32,27 +32,34 @@ except:
 	print "Error: unable to fetch data"
 
 for family in families:
-	print family
-'''	
-for i in len(1):
+	#print family
 	# drop table if already exists
-	sql_drop = "DROP TABLE " + ANKRD + ";"
-	#sql_drop = "DROP TABLE " + family + ";"
+	sql_drop = "DROP TABLE  " + family + ";"
+	print sql_drop
+	try:
+		cursor.execute(sql_drop)
+		db.commit()
+		print "success0"
+	except:
+		db.rollback()
+		print "fail0"
 	# create a table in the database with the abreviated family name
-	#sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
-	sql_tables = "CREATE TABLE " + 'ANKRD' + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
+	sql_tables = "CREATE TABLE " + family + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary text);"
+	#print sql_tables
 	try:
 		cursor.execute(sql_tables)
 		db.commit()
-		print family
+		#print "success1"
 	except:
-		db.rollback()	
+		db.rollback()
+		#print "fail1"	
 
 
 	#return all of the genes within the same gene family as the origninal gene
 	genes = []
 	try:
 		sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family + "'" + ";"
+		#print sql_genes
 	   	# Execute the SQL command
 		cursor.execute(sql_genes)
 		# Fetch all the rows in a list
@@ -81,8 +88,9 @@ for i in len(1):
 		# create variables to hold data to insert
 		var_1 = int(uid_comp)
 		var_2 = i # name of gene
-		if "ChrLoc" in record[0]["GenomicInfo"][0]:
-			var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
+		if "GenomicInfo" in record[0]:
+			if "ChrLoc" in record[0]["GenomicInfo"][0]:
+				var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
 		else:
 			var_3 = ''
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
@@ -90,22 +98,25 @@ for i in len(1):
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
 		#print var_1
-		print var_2
+		#print var_2
 		#print var_3
 		#print var_4
 		#print var_5
 		#print var_6
-		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
+		sql_family = "INSERT INTO " + family + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
+		#print sql_family
 		try:
 			cursor.execute(sql_family)
 			db.commit()
+		#	print "success2"
 		except:
 			db.rollback()	
+		#	print "fail2"
 		'''
 		# drop table if exists
 		sql_drop = "DROP TABLE " + i + ";"
 		# create a table for each gene to hold sequences
-		sql_tables = "CREATE TABLE " + "'" + i + "'" + "(nuc_seq nvarchar(MAX), aa_seq nvarchar(MAX));"
+		sql_tables = "CREATE TABLE " + "'" + i + "'" + "(nuc_seq text, aa_seq text;"
 		try:
 			cursor.execute(sql_family)
 			db.commit()
