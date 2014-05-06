@@ -32,17 +32,17 @@ except:
 	print "Error: unable to fetch data"
 
 for family in families:
-	#print family
+	print family
 	# drop table if already exists
 	sql_drop = "DROP TABLE  " + family + ";"
 	print sql_drop
 	try:
 		cursor.execute(sql_drop)
 		db.commit()
-		print "success0"
+		#print "success0"
 	except:
 		db.rollback()
-		print "fail0"
+		#print "fail0"
 	# create a table in the database with the abreviated family name
 	sql_tables = "CREATE TABLE " + family + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary text);"
 	#print sql_tables
@@ -54,11 +54,11 @@ for family in families:
 		db.rollback()
 		#print "fail1"	
 
-
 	#return all of the genes within the same gene family as the origninal gene
 	genes = []
 	try:
-		sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family + "'" + ";"
+		sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = 'ANKRD';"
+		#sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family + "'" + ";"
 		#print sql_genes
 	   	# Execute the SQL command
 		cursor.execute(sql_genes)
@@ -75,26 +75,27 @@ for family in families:
 
 	#create data structure or send to mysql db?
 	for i in genes:
+		#print i
 		# handle call to find UID
 		handle = Entrez.esearch(db = "gene", term = i + '[gene] AND human[Orgn]')
 		# set as record
 		record = Entrez.read(handle)
+		#print record
 		# pull UID
 		uid_comp = int(record["IdList"][0])
 		# handle call
 		handle = Entrez.esummary(db="gene", id=uid_comp)
 		# set as record
 		record = Entrez.read(handle)
+		#print record
 		# create variables to hold data to insert
 		var_1 = int(uid_comp)
 		var_2 = i # name of gene
-		if "GenomicInfo" in record[0]:
-			if "ChrLoc" in record[0]["GenomicInfo"][0]:
-				var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
-		else:
-			var_3 = ''
-		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
-		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
+		#AGAP10 bad
+		#AGAP9 good
+		var_3 = record[0]["Chromosome"]
+		var_4 = int(record[0]["ChrStart"]) # start loc
+		#var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
 		#print var_1
@@ -103,7 +104,8 @@ for family in families:
 		#print var_4
 		#print var_5
 		#print var_6
-		sql_family = "INSERT INTO " + family + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
+	
+		sql_family = "INSERT INTO " + family + " (id, name, chr, start_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_6) 
 		#print sql_family
 		try:
 			cursor.execute(sql_family)
@@ -112,7 +114,7 @@ for family in families:
 		except:
 			db.rollback()	
 		#	print "fail2"
-		'''
+'''
 		# drop table if exists
 		sql_drop = "DROP TABLE " + i + ";"
 		# create a table for each gene to hold sequences
