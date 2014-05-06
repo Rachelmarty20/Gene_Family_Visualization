@@ -52,7 +52,7 @@ for family in families:
 		#print "success1"
 	except:
 		db.rollback()
-		#print "fail1"	
+		print "fail1"	
 
 	#return all of the genes within the same gene family as the origninal gene
 	genes = []
@@ -75,7 +75,7 @@ for family in families:
 
 	#create data structure or send to mysql db?
 	for i in genes:
-		#print i
+		print i
 		# handle call to find UID
 		handle = Entrez.esearch(db = "gene", term = i + '[gene] AND human[Orgn]')
 		# set as record
@@ -113,7 +113,7 @@ for family in families:
 		#	print "success2"
 		except:
 			db.rollback()	
-		#	print "fail2"
+			print "fail2"
 '''
 		# drop table if exists
 		sql_drop = "DROP TABLE " + i + ";"
