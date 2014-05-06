@@ -2,20 +2,21 @@
 import cgi
 print "Content-type: text/html\n\n"
 
-# Goal: create Json files from database data to be 
+# Goal: create Json files from database data to be parsed by d3
 import MySQLdb
 import Bio
 import os
 from Bio import Entrez
-import json
+import json 
 
-def get_seqs(gene_comp):
+def get_seqs(gene):
 	#connect to db
 	db = MySQLdb.connect("localhost","root","quaker22","gene" )
 
 	#setup cursor
 	cursor = db.cursor()
 
+	#sizes of all of the chromosomes
 	chr1 = 249250621
 	chr2 = 243199373
 	chr3 = 198022430
@@ -41,18 +42,46 @@ def get_seqs(gene_comp):
 	chrX = 155270560
 	chrY = 59373566
 
+	families = []
+	#return the family_abrev of the gene
+	try:
+		sql_families = "SELECT family_abrev FROM gene_fam WHERE gene = " + "'" + gene + "'" + ";"
+		#print sql_genes
+	   	# Execute the SQL command
+		cursor.execute(sql_families)
+		# Fetch all the rows in a list
+		results = cursor.fetchall()
+		for row in results:
+			families.append(row[0])
+#			print row[0]
+	except:
+	   print "Error: unable to fetch data"
+
+	#get the location of the gene from the table of the gene family 
+	try:
+		sql_loc = "SELECT chr, start_loc FROM " + "'" + families[0] + "'" + " WHERE gene = " + "'" + gene + "'" + ";"
+		#print sql_genes
+	   	# Execute the SQL command
+		cursor.execute(sql_loc)
+		# Fetch all the rows in a list
+		results = cursor.fetchall()
+		print results
+		for row in results:
+			chr_main = row[0]
+			start_main = row[1]
+#			print row[0]
+	except:
+	   print "Error: unable to fetch data"
+
+	#
+
+
+	
+
+	#json.dumps(obj)
 
 
 
-#	Goal: return list of lists; gene name and sequence
-#	return 
-#Script to find locations of genes in genome
-#input: list of info about the selected gene, list of info about gene family
-#ouput: json or tsv file 
 
-#import MySQLdb
-#import Bio
-#import os
-#from Bio import Entrez
-#import json
-#store the locations
+
+
