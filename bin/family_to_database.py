@@ -82,12 +82,12 @@ for family in families:
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
-		print var_1
+		#print var_1
 		print var_2
-		print var_3
-		print var_4
-		print var_5
-		print var_6
+		#print var_3
+		#print var_4
+		#print var_5
+		#print var_6
 		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
 		try:
 			cursor.execute(sql_family)
