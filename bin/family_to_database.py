@@ -57,8 +57,8 @@ for family in families:
 	#return all of the genes within the same gene family as the origninal gene
 	genes = []
 	try:
-		sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = 'ANKRD';"
-		#sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family + "'" + ";"
+		#sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = ';"
+		sql_genes = "SELECT gene FROM gene_fam WHERE family_abrev = " + "'" + family + "'" + ";"
 		#print sql_genes
 	   	# Execute the SQL command
 		cursor.execute(sql_genes)
