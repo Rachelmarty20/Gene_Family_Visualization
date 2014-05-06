@@ -31,9 +31,22 @@ try:
 except:
 	print "Error: unable to fetch data"
 
+families_already = []
+sql_fam_al = "SHOW TABLES;"
+try:
+   # Execute the SQL command
+   cursor.execute(sql_fam_al)
+   # Fetch all the rows in a list
+   results = cursor.fetchall()
+   for row in results:
+      families_already.append(row[0])
+#     print row[0]
+except:
+	print "Error: unable to fetch data"
+
 for family in families:
 	print family
-	if (family[0] != 'A' and family[0] != 'B' and family[0] != 'C'):
+	if family not in families_already:
 		# drop table if already exists
 		sql_drop = "DROP TABLE  " + family + ";"
 		print sql_drop
