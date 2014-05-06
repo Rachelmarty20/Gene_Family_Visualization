@@ -77,7 +77,7 @@ for family in families:
 		# create variables to hold data to insert
 		var_1 = int(uid_comp)
 		var_2 = i # name of gene
-		var_3 = int(record[0]["GenomicInfo"][0]["ChrLoc"]) # chromosome
+		var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
@@ -88,7 +88,7 @@ for family in families:
 		print var_4
 		print var_5
 		print var_6
-		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%d', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
+		sql_family = "INSERT INTO " + "'" + family + "'" + " (id, name, chr, start_loc, end_loc, summary) VALUES " + "('%d', '%s', '%s', '%d', '%d', '%s');" % (var_1, var_2, var_3, var_4, var_5, var_6) 
 		try:
 			cursor.execute(sql_family)
 			db.commit()
