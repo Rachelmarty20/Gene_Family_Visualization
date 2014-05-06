@@ -32,6 +32,7 @@ except:
 	print "Error: unable to fetch data"
 
 for family in families:
+	print family
 	# drop table if already exists
 	sql_drop = "DROP TABLE " + family + ";"
 	# create a table in the database with the abreviated family name
@@ -80,13 +81,13 @@ for family in families:
 		if "ChrLoc" in record[0]["GenomicInfo"][0]:
 			var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
 		else 
-		var_3 = ''
+			var_3 = ''
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
 		#print var_1
-		print var_2
+		#print var_2
 		#print var_3
 		#print var_4
 		#print var_5
