@@ -34,6 +34,7 @@ except:
 for family in families:
 	print family
 '''	
+for i in len(1):
 	# drop table if already exists
 	sql_drop = "DROP TABLE " + ANKRD + ";"
 	#sql_drop = "DROP TABLE " + family + ";"
