@@ -16,7 +16,7 @@ db = MySQLdb.connect("localhost","root","quaker22","gene" )
 
 #setup cursor
 cursor = db.cursor()
-
+'''
 #create an array of gene families to traverse later
 families = []
 sql_fam = "SELECT distinct family_abrev FROM gene_fam;"
@@ -33,11 +33,13 @@ except:
 
 for family in families:
 	print family
+'''	
 	# drop table if already exists
-	sql_drop = "DROP TABLE " + family + ";"
+	sql_drop = "DROP TABLE " + ANKRD + ";"
+	#sql_drop = "DROP TABLE " + family + ";"
 	# create a table in the database with the abreviated family name
-	sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
-	
+	#sql_tables = "CREATE TABLE " + "'" + family + "'" + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
+	sql_tables = "CREATE TABLE " + 'ANKRD' + "(id varchar(20), name varchar(60), chr int, start_loc int, end_loc int, summary nvarchar(MAX));"
 	try:
 		cursor.execute(sql_tables)
 		db.commit()
@@ -80,14 +82,14 @@ for family in families:
 		var_2 = i # name of gene
 		if "ChrLoc" in record[0]["GenomicInfo"][0]:
 			var_3 = record[0]["GenomicInfo"][0]["ChrLoc"] # chromosome
-		else 
+		else:
 			var_3 = ''
 		var_4 = int(record[0]["GenomicInfo"][0]["ChrStart"]) # start loc
 		var_5 = int(record[0]["GenomicInfo"][0]["ChrStop"]) #end loc
 		var_6 = record[0]["Summary"] # summary
 		#insert into family table
 		#print var_1
-		#print var_2
+		print var_2
 		#print var_3
 		#print var_4
 		#print var_5
