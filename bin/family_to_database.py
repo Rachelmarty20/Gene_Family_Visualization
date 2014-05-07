@@ -20,6 +20,7 @@ cursor = db.cursor()
 #create an array of gene families to traverse later
 families = []
 sql_fam = "SELECT distinct family_abrev FROM gene_fam;"
+families.append('TRIM')
 try:
    # Execute the SQL command
    cursor.execute(sql_fam)
