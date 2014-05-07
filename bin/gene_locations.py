@@ -51,11 +51,12 @@ def get_seqs():
 	chr_sib = 0
 	start_sib = 0
 	bucket_size = 0
+	chr_dist = 0
 
 	families = []
 	#return the family_abrev of the gene
 	sql_families = "SELECT family_abrev FROM gene_fam WHERE gene = " + "'" + gene + "'" + ";"
-	print sql_families
+	#print sql_families
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_families)
@@ -69,19 +70,23 @@ def get_seqs():
 
 	#get the location of the gene from the table of the gene family
 	sql_loc = "SELECT chr, start_loc FROM " + families[0] + " WHERE name = " + "'" + gene + "'" + ";"
-	print sql_loc 
+	#print sql_loc 
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc)
 		# Fetch all the rows in a list
 		results = cursor.fetchall()
-		print results
+		#print results
+		#print len(results)
 		for row in results:
-			chr_main = row[0]
-			start_main = row[1]
+			chr_main = int(row[0])
+			start_main = int(row[1])
 #			print row[0]
 	except:
 	   print "Error: unable to fetch data"
+
+	print chr_main
+	print start_main
 
 	#determine which chromosome we are working with, declare it as chromosome
 	if chr_main == 1:
@@ -149,36 +154,38 @@ def get_seqs():
 	#get the locations of the genes in the rest of the gene family
 	family = []
 	sql_loc2 = "SELECT chr, start_loc FROM " + families[0] + " WHERE name <> " + "'" + gene + "'" + ";"
-	print sql_loc2
+	#print sql_loc2
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc2)
 		# Fetch all the rows in a list
 		results = cursor.fetchall()
-		print results
-		for row in results:
-			chr_sib = row[0]
-			start_sib = row[1]
-			if (chr_sib == chr_main):
-				chr_same = 1
-				#determine the bucket that the gene belongs in
-				for i in 100:
-					if(bucket_size < start_main):
-						store_sib = i
-						break
-					else:
-						bucket_size = (i+1)*bucket_size
-				#determine size based on subtraction of main_num and sib_num
-				chr_dist = abs(main_num - sib_num)
-			else:
-				chr_same = 0
-			#equation to determine distance metric of 
-			family.append([chr_sib, start_sib, chr_same, chr_dist])
-#			print row[0]
+		#print results
 	except:
 	   print "Error: unable to fetch data"	   
 
+	for row in results:
+		chr_sib = int(row[0])
+		#print "one " + str(row[0])
+		start_sib = int(row[1])
+		#print "two " + str(row[1])
+		if (chr_sib == chr_main):
+			chr_same = 1
+			#determine the bucket that the gene belongs in
+			for i in range(100):
+				if(bucket_size < start_main):
+					store_sib = i
+					break
+				else:
+					bucket_size = (i+1)*bucket_size
+			#determine size based on subtraction of main_num and sib_num
+			chr_dist = abs(store_main - store_sib)
+		else:
+			chr_same = 0
+		#equation to determine distance metric of 
+		family.append([chr_sib, start_sib, chr_same, chr_dist])
 
+	print family
 
 	#create main dictionary object
 	obj = {}
