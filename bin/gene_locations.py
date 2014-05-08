@@ -220,7 +220,7 @@ def get_seqs():
 	#create the dictionary that will be the child of the main gene
 	for i in family:
 		#create individual dictionaries for each gene
-		temp_main.append({'name':i[4], 'size':(i[3]*100)})
+		temp_main.append({'name':i[4], 'size':(i[3]*10)})
 	obj['children'] = temp_main
 
 	#print obj
