@@ -225,10 +225,6 @@ def get_seqs():
 
 	#print obj
 
-
-
-
-
 	print json.dumps(obj)
 
 #call main method
