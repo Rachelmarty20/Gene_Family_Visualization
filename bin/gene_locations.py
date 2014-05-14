@@ -10,10 +10,10 @@ from Bio import Entrez
 import json 
 
 
-#form = cgi.FieldStorage()
-#gene = str(form.getvalue("mygene"))
-gene = "CD28"
-print gene
+form = cgi.FieldStorage()
+mygene = str(form.getvalue("mygene"))
+#gene = "CD28"
+print mygene
 print 'hello'
 
 
@@ -255,7 +255,7 @@ def get_seqs(gene):
 #actual stuff
 print "half"
 try:
-	get_seqs(gene)
+	get_seqs(mygene)
 	#get_seqs("CDH11")
 	print "success"
 except:
