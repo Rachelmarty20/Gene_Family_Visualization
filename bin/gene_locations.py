@@ -24,6 +24,8 @@ def get_seqs(gene):
 	print gene
 	try:
 		#does it need permissions to write file in ubuntu?
+		#create temp directory to get make unique files
+		#python has sessions, import
 		f = open("/var/www/html/Gene_Family_Visualization/data/flare.json", "w")
 	except:
 		print "couldn't open"
