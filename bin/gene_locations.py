@@ -11,7 +11,8 @@ import json
 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
+#mygene = form.getvalue("mygene")
+mygene = "CD28"
 print(mygene)
 
 
@@ -19,7 +20,7 @@ def get_seqs(gene):
 	os.remove('./data/flare.json')
 	#open file to write json
 	f = open('./data/flare.json', 'w')
-
+	#print gene
 	#to be removed later
 	#gene = 'CDH11'
 
@@ -234,7 +235,9 @@ def get_seqs(gene):
 	obj['children'] = temp_main
 
 	#print obj, write to json file
+	#print obj
 	json.dump(obj, f)
+
 
 
 #actual stuff
