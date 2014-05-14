@@ -11,7 +11,7 @@ import json
 
 
 form = cgi.FieldStorage()
-gene = form.getvalue("mygene")
+gene = str(form.getvalue("mygene"))
 #mygene = "CD28"
 print gene
 print 'hello'
@@ -255,8 +255,8 @@ def get_seqs(gene):
 #actual stuff
 print "half"
 try:
-	#get_seqs(gene)
-	print get_seqs("CDH11")
+	get_seqs(gene)
+	#get_seqs("CDH11")
 	print "success"
 except:
 	print "fail"
