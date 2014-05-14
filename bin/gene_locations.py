@@ -23,7 +23,8 @@ def get_seqs(gene):
 	print os.getcwd()
 	print gene
 	try:
-		f = open("flare.json", "w")
+		#does it need permissions to write file in ubuntu?
+		f = open("../data/flare.json", "w")
 	except:
 		print "counldn't open"
 	#to be removed later
