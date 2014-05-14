@@ -32,7 +32,6 @@ $(function() {
   $('#gene-info').click(function(e) {
       var url = '/Gene_Family_Visualization/bin/gene_locations.py';
       var term = $('#inputgene').val();
-      window.location='./circle.html'
       alert(term);
       //window.location='./circle.html'
       $.ajax({
@@ -48,10 +47,9 @@ $(function() {
       });
   });
 });
-/*
+
 $(function(){
     $('#gene-info').click(function(e){
         window.location='./circle.html'
     });
 });
-*/
