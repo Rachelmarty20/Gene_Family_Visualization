@@ -26,7 +26,7 @@ def get_seqs(gene):
 		#does it need permissions to write file in ubuntu?
 		f = open("../data/flare.json", "w")
 	except:
-		print "counldn't open"
+		print "couldn't open"
 	#to be removed later
 	#gene = 'CDH11'
 
@@ -255,8 +255,8 @@ def get_seqs(gene):
 #actual stuff
 print "half"
 try:
-	get_seqs(gene)
-	#print get_seqs("CDH11")
+	#get_seqs(gene)
+	print get_seqs("CDH11")
 	print "success"
 except:
 	print "fail"
