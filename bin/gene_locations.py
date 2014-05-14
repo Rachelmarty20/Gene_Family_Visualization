@@ -20,6 +20,7 @@ print 'hello'
 def get_seqs(gene):
 	#open file to write json
 	#f = open('./data/flare.json', 'w')
+	print os.getcwd()
 	try:
 		f = open('./../data/flare.json', 'w')
 		print gene
@@ -254,10 +255,11 @@ def get_seqs(gene):
 print "half"
 try:
 	get_seqs(gene)
+	#print get_seqs("CDH11")
 	print "success"
 except:
 	print "fail"
-#print get_seqs("CDH11")
+
 print "done"
 
 
