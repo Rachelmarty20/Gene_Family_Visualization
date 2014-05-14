@@ -22,7 +22,7 @@ def get_seqs(gene):
 	#f = open('./data/flare.json', 'w')
 	print os.getcwd()
 	try:
-		f = open('./../data/flare.json', 'w')
+		f = open('../data/flare.json', 'w')
 		print gene
 	except:
 		print "counldn't open"
