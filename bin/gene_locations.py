@@ -24,7 +24,7 @@ def get_seqs(gene):
 	#gene = 'CDH11'
 
 	#connect to db
-	db = MySQLdb.connect("localhost","root","quaker22", gene)
+	db = MySQLdb.connect("localhost","root","quaker22", "gene")
 
 	#setup cursor
 	cursor = db.cursor()
@@ -238,7 +238,7 @@ def get_seqs(gene):
 
 
 #actual stuff
-get_seqs(CDH11)
+get_seqs(mygene)
 
 
 
