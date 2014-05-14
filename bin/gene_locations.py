@@ -5,7 +5,7 @@ print "Content-type: text/html\n\n"
 # Goal: create Json files from database data to be parsed by d3
 import MySQLdb
 import Bio
-#import os
+import os
 from Bio import Entrez
 import json 
 
