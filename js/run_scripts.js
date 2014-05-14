@@ -52,5 +52,5 @@ $(function(){
     $('#gene-info').click(function(e){
         window.location='./circle.html'
     });
-});
+});  
 */

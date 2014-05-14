@@ -7,6 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link href="../vendor/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../vendor/jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.css">
+
+    <!--link href="../vendor/jumbotron-narrow.css" rel="stylesheet"-->
+    <script src="../vendor/D3.v3.js" charset="utf-8"></script>
+    <script src="../vendor/jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+    <script src="../vendor/jquery-1.11.0.min.js"></script>
+    <script src="../js/run_scripts.js"></script>
 
     <title>Genolution</title>
 
@@ -52,7 +60,6 @@
         </ul>
         <h3 class="text-muted">Genolution</h3>
       </div>  
-
     <script src="../vendor/D3.v3.js"></script>
     <script>
       var width = 960,
@@ -159,5 +166,18 @@
         return nodes;
       }
         
+      //adding tooltips
+      var jqtt = $(".node").tooltip({ track: false, 
+        content: function () {
+          var title = $(this).attr("title");
+          return title;
+        }, 
+        show: { duration: 0 }, hide: { duration: 0 } });
+
     </script>
+    <style type="text/css">
+      .ui-tooltip {
+          font: bold 14px "Helvetica Neue", Sans-Serif;
+        }
+    </style>
   </body>
