@@ -32,6 +32,7 @@ $(function() {
   $('#gene-info').click(function(e) {
       var url = '/Gene_Family_Visualization/bin/gene_locations.py';
       var term = $('#inputgene').val();
+      window.location='./circle.html'
       alert(term);
       //window.location='./circle.html'
       $.ajax({
@@ -41,7 +42,7 @@ $(function() {
             dataType: 'html',
             context: document.body
       }).done(function(response){
-            print("done doing things");
+            //print("done doing things");
             $('#ajax-div2').empty().append(response);
             alert(response);//Data files created for sunburst and heatmap views.");
       });
