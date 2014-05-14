@@ -244,7 +244,11 @@ def get_seqs(gene):
 
 #actual stuff
 print "half"
-print get_seqs(mygene)
+try:
+	get_seqs(mygene)
+	print "success"
+except:
+	print "fail"
 #print get_seqs("CDH11")
 print "done"
 
