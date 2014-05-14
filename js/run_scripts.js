@@ -30,7 +30,7 @@
 
 $(function() {
   $('#gene-info').click(function(e) {
-      var url = 'Gene_Family_Visualization/bin/gene_locations.py';
+      var url = './Gene_Family_Visualization/bin/gene_locations.py';
       var term = $('#inputgene').val();
       alert(term);
       //window.location='./circle.html'
