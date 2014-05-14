@@ -242,6 +242,7 @@ def get_seqs(gene):
 
 
 #actual stuff
+print "half"
 get_seqs(mygene)
 print "done"
 #get_seqs("CD28")
