@@ -11,8 +11,8 @@ import json
 
 
 form = cgi.FieldStorage()
-#mygene = form.getvalue("mygene")
-mygene = "CD28"
+mygene = form.getvalue("mygene")
+#mygene = "CD28"
 print(mygene)
 
 
