@@ -10,9 +10,9 @@ from Bio import Entrez
 import json 
 
 
-form = cgi.FieldStorage()
-gene = str(form.getvalue("mygene"))
-#mygene = "CD28"
+#form = cgi.FieldStorage()
+#gene = str(form.getvalue("mygene"))
+gene = "CD28"
 print gene
 print 'hello'
 
