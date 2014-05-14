@@ -1,5 +1,5 @@
- var gene;
 
+/*
  $(function() {
            $('#run-python').click(function(e){
                var url = '/Gene_Family_Visualization/bin/gene_locations.py';
@@ -27,6 +27,7 @@
             });
           });
  });
+*/
 
 $(function() {
   $('#gene-info').click(function(e) {
@@ -41,7 +42,8 @@ $(function() {
             dataType: 'html',
             context: document.body
       }).done(function(response){
-            //print("done doing things");
+            print("done doing things");
+            console.log(results)
             $('#ajax-div2').empty().append(response);
             alert(response);//Data files created for sunburst and heatmap views.");
       });
