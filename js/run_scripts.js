@@ -1,3 +1,5 @@
+ var gene;
+
  $(function() {
            $('#run-python').click(function(e){
                var url = '/Gene_Family_Visualization/bin/gene_locations.py';
@@ -25,3 +27,22 @@
             });
           });
  });
+
+$(function() {
+  $('#gene-info').click(function(e) {
+      var url = '/bin/gene_locations.py';
+      var term = $('#inputgene').val();
+      alert(term);
+      $.ajax({
+            type: "POST",
+            url: url,
+            data: {mygene: term},
+            dataType: 'html',
+            context: document.body
+      }).done(function(response){
+            print("done doing things");
+            $('#ajax-div2').empty().append(response);
+            alert(response);//Data files created for sunburst and heatmap views.");
+      });
+  });
+});

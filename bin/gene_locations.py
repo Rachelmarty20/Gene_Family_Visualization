@@ -9,12 +9,22 @@ import os
 from Bio import Entrez
 import json 
 
-def get_seqs():
+
+form = cgi.FieldStorage()
+mygene = form.getvalue("mygene")
+print(mygene)
+
+
+def get_seqs(gene):
+	os.remove('flare.json')
+	#open file to write json
+	f = open('flare.json', 'w')
+
 	#to be removed later
-	gene = 'CDH11'
+	#gene = 'CDH11'
 
 	#connect to db
-	db = MySQLdb.connect("localhost","root","quaker22","gene" )
+	db = MySQLdb.connect("localhost","root","quaker22", gene)
 
 	#setup cursor
 	cursor = db.cursor()
@@ -223,13 +233,14 @@ def get_seqs():
 		temp_main.append({'name':i[4], 'size':(i[3]*10)})
 	obj['children'] = temp_main
 
-	#print obj
+	#print obj, write to json file
+	json.dump(obj, f)
 
-	print json.dumps(obj)
 
-#call main method
-if __name__ == '__main__':
-	get_seqs()
+#actual stuff
+get_seqs(mygene)
+
+
 
 
 
