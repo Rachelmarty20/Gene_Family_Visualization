@@ -71,7 +71,7 @@ def get_seqs(gene):
 	families = []
 	#return the family_abrev of the gene
 	sql_families = "SELECT family_abrev FROM gene_fam WHERE gene = " + "'" + gene + "'" + ";"
-	#print sql_families
+	print sql_families
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_families)
@@ -85,7 +85,7 @@ def get_seqs(gene):
 
 	#get the location of the gene from the table of the gene family
 	sql_loc = "SELECT chr, start_loc FROM " + families[0] + " WHERE name = " + "'" + gene + "'" + ";"
-	#print sql_loc 
+	print sql_loc 
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc)
@@ -153,7 +153,7 @@ def get_seqs(gene):
 	else:
 		chromosome = chrY
 					 
-	#print chromosome
+	print chromosome
 	#find bucket size
 	bucket_size = int(chromosome/1000)
 	bucket_size_store = bucket_size
@@ -173,7 +173,7 @@ def get_seqs(gene):
 	#get the locations of the genes in the rest of the gene family
 	family = []
 	sql_loc2 = "SELECT chr, start_loc, name, summary FROM " + families[0] + " WHERE name <> " + "'" + gene + "'" + ";"
-	#print sql_loc2
+	print sql_loc2
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc2)
@@ -214,7 +214,7 @@ def get_seqs(gene):
 		#equation to determine distance metric of 
 		family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-	#print family
+	print family
 
 	for fam in family:
 		if(fam[2] == 0):
@@ -237,7 +237,7 @@ def get_seqs(gene):
 	#print obj, write to json file
 	print obj
 	json.dump(obj, f)
-	
+
 
 
 
