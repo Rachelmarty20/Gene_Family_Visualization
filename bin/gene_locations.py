@@ -5,7 +5,7 @@ print "Content-type: text/html\n\n"
 # Goal: create Json files from database data to be parsed by d3
 import MySQLdb
 import Bio
-import os
+#import os
 from Bio import Entrez
 import json 
 
@@ -18,7 +18,6 @@ print 'hello'
 
 
 def get_seqs(gene):
-	os.remove('./data/flare.json')
 	#open file to write json
 	f = open('./data/flare.json', 'w')
 	print gene
@@ -237,7 +236,8 @@ def get_seqs(gene):
 
 	#print obj, write to json file
 	print obj
-	json.dump(obj, f)
+	#json.dump(obj, f)
+	f.write(str(obj))
 	return obj
 
 
@@ -245,8 +245,8 @@ def get_seqs(gene):
 #actual stuff
 print "half"
 print get_seqs(mygene)
+#print get_seqs("CDH11")
 print "done"
-#get_seqs("CD28")
 
 
 
