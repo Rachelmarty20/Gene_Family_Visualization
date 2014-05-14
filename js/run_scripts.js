@@ -46,3 +46,9 @@ $(function() {
       });
   });
 });
+
+$(function(){
+    $('#gene-info').click(function(){
+        window.location='./circle.html'
+    });
+});
