@@ -241,8 +241,8 @@ def get_seqs(gene):
 
 
 #actual stuff
-#get_seqs(mygene)
-get_seqs("CD28")
+get_seqs(mygene)
+#get_seqs("CD28")
 
 
 
