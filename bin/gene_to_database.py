@@ -75,7 +75,7 @@ for family in families:
 			db.rollback()
 		# find ids in nucleotide database
 		#which database should I be using???
-		handle = Entrez.elink(dbfrom="gene", db="nucest", id=uid_comp)
+		handle = Entrez.elink(dbfrom="gene", db="nucleotide", id=uid_comp)
 		record = Entrez.read(handle)
 		#print record
 		num_of_seqs = len(record[0][u'LinkSetDb'][0][u'Link'])
@@ -85,7 +85,7 @@ for family in families:
 			#print seq_id 
 			#if seq not in tables?
 			#if seq_id != '568815361':
-			handle = Entrez.efetch(db="nucest", id=seq_id, rettype="XML", retmode="XML") #rettype was gb
+			handle = Entrez.efetch(db="nucleotide", id=seq_id, rettype="XML", retmode="XML") #rettype was gb
 			record_seq = Entrez.read(handle, validate = False)
 			#print record_seq[u'Bioseq-set_seq-set'][0]
 			#nuc_seq = record_seq[0][u'GBSeq_sequence']

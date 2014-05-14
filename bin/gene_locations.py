@@ -11,8 +11,8 @@ import json
 
 
 form = cgi.FieldStorage()
-mygene = str(form.getvalue("mygene"))
-#gene = "CD28"
+mygene = form.getvalue("mygene")
+#mygene = "CDH11"
 print mygene
 print 'hello'
 
@@ -24,7 +24,7 @@ def get_seqs(gene):
 	print gene
 	try:
 		#does it need permissions to write file in ubuntu?
-		f = open("../data/flare.json", "w")
+		f = open("/var/www/html/Gene_Family_Visualization/data/flare.json", "w")
 	except:
 		print "couldn't open"
 	#to be removed later
