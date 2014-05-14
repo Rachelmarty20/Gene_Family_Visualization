@@ -11,16 +11,20 @@ import json
 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
+gene = form.getvalue("mygene")
 #mygene = "CD28"
-print mygene
+print gene
 print 'hello'
 
 
 def get_seqs(gene):
 	#open file to write json
-	f = open('./data/flare.json', 'w')
-	print gene
+	#f = open('./data/flare.json', 'w')
+	try:
+		f = open('./data/flare.json', 'w')
+		print gene
+	except:
+		print "counldn't open"
 	#to be removed later
 	#gene = 'CDH11'
 
@@ -249,7 +253,7 @@ def get_seqs(gene):
 #actual stuff
 print "half"
 try:
-	get_seqs(mygene)
+	get_seqs(gene)
 	print "success"
 except:
 	print "fail"
