@@ -236,7 +236,8 @@ def get_seqs(gene):
 
 	#print obj, write to json file
 	print obj
-	json.dump(obj, f)
+	#json.dump(obj, f)
+	f.write(obj)
 
 
 
