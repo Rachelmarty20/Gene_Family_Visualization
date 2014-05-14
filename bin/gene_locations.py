@@ -238,12 +238,13 @@ def get_seqs(gene):
 	#print obj, write to json file
 	print obj
 	json.dump(obj, f)
+	return obj
 
 
 
 #actual stuff
 print "half"
-get_seqs(mygene)
+print get_seqs(mygene)
 print "done"
 #get_seqs("CD28")
 
