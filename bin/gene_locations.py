@@ -16,9 +16,9 @@ print(mygene)
 
 
 def get_seqs(gene):
-	os.remove('flare.json')
+	os.remove('./data/flare.json')
 	#open file to write json
-	f = open('flare.json', 'w')
+	f = open('./data/flare.json', 'w')
 
 	#to be removed later
 	#gene = 'CDH11'
@@ -238,7 +238,7 @@ def get_seqs(gene):
 
 
 #actual stuff
-get_seqs(mygene)
+get_seqs(CDH11)
 
 
 
