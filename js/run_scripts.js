@@ -34,7 +34,6 @@ $(function() {
       var url = './bin/gene_locations.py';
       var term = $('#inputgene').val();
       //alert(term);
-      window.location='./circle.html'
       $.ajax({
             type: "POST",
             url: url,
@@ -44,6 +43,7 @@ $(function() {
       }).done(function(response){
             //print("done doing things");
             console.log(response)
+            window.location='./circle.html'
             //$('#ajax-div2').empty().append(response);
             //alert(response);//Data files created for sunburst and heatmap views.");
       });
