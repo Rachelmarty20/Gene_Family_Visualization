@@ -34,7 +34,7 @@ $(function() {
       var url = './bin/gene_locations.py';
       var term = $('#inputgene').val();
       //alert(term);
-      //window.location='./circle.html'
+      window.location='./circle.html'
       $.ajax({
             type: "POST",
             url: url,
@@ -49,9 +49,10 @@ $(function() {
       });
   });
 });
-
+/*
 $(function(){
     $('#gene-info').click(function(e){
-        window.location='./face/circle.html'
+        window.location='./circle.html'
     });
 });  
+*/
