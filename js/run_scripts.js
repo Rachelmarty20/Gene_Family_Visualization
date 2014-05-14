@@ -42,7 +42,7 @@ $(function() {
             dataType: 'html',
             context: document.body
       }).done(function(response){
-            print("done doing things");
+            //print("done doing things");
             console.log(results)
             $('#ajax-div2').empty().append(response);
             //alert(response);//Data files created for sunburst and heatmap views.");
