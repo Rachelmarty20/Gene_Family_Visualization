@@ -31,7 +31,7 @@
 
 $(function() {
   $('#gene-info').click(function(e) {
-      var url = '/Gene_Family_Visualization/bin/gene_locations.py';
+      var url = '/var/www/html/Gene_Family_Visualization/bin/gene_locations.py';
       var term = $('#inputgene').val();
       //alert(term);
       //window.location='./circle.html'
@@ -52,6 +52,6 @@ $(function() {
 
 $(function(){
     $('#gene-info').click(function(e){
-        window.location='./circle.html'
+        window.location='/var/www/html/Gene_Family_Visualization/face/circle.html'
     });
 });  
