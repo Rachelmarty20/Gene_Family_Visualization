@@ -13,7 +13,8 @@ import json
 form = cgi.FieldStorage()
 mygene = form.getvalue("mygene")
 #mygene = "CD28"
-print(mygene)
+print mygene
+print 'hello'
 
 
 def get_seqs(gene):
@@ -242,6 +243,7 @@ def get_seqs(gene):
 
 #actual stuff
 get_seqs(mygene)
+print "done"
 #get_seqs("CD28")
 
 
