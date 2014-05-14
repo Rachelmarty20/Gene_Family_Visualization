@@ -21,7 +21,7 @@ def get_seqs(gene):
 	#open file to write json
 	#f = open('./data/flare.json', 'w')
 	try:
-		f = open('./data/flare.json', 'w')
+		f = open('../data/flare.json', 'w')
 		print gene
 	except:
 		print "counldn't open"
