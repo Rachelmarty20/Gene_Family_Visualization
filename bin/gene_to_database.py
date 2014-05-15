@@ -72,7 +72,7 @@ for family in families:
 
 	for i in genes:
 		#check if already exists
-		if ((i not in genes_already) and (i != "CYP2AC1P")):
+		if ((i not in genes_already)):
 			print i
 			#try efetch for gene database
 			handle = Entrez.esearch(db = "gene", term = i + '[gene] AND human[Orgn]')
@@ -80,30 +80,30 @@ for family in families:
 			record = Entrez.read(handle)
 			#print record
 			#pull UID
-			uid_comp = int(record["IdList"][0])
-			#print uid_comp
-			# drop table if exists
-			sql_drop = "DROP TABLE " + i + ";"
-			print sql_drop
 			try:
-				cursor.execute(sql_drop)
-				db.commit()
-			except:
-				db.rollback()
-			# create a table for each gene to hold sequences
-			sql_tables = "CREATE TABLE " + i + "(nuc_seq text, aa_seq text);"
-			print sql_tables
-			try:
-				cursor.execute(sql_tables)
-				db.commit()
-			except:
-				db.rollback()
-			# find ids in nucleotide database
-			#which database should I be using???
-			handle = Entrez.elink(dbfrom="gene", db="nucleotide", id=uid_comp)
-			record = Entrez.read(handle)
-			#print record
-			try:
+				uid_comp = int(record["IdList"][0])
+				#print uid_comp
+				# drop table if exists
+				sql_drop = "DROP TABLE " + i + ";"
+				print sql_drop
+				try:
+					cursor.execute(sql_drop)
+					db.commit()
+				except:
+					db.rollback()
+				# create a table for each gene to hold sequences
+				sql_tables = "CREATE TABLE " + i + "(nuc_seq text, aa_seq text);"
+				print sql_tables
+				try:
+					cursor.execute(sql_tables)
+					db.commit()
+				except:
+					db.rollback()
+				# find ids in nucleotide database
+				#which database should I be using???
+				handle = Entrez.elink(dbfrom="gene", db="nucleotide", id=uid_comp)
+				record = Entrez.read(handle)
+				#print record
 				num_of_seqs = len(record[0][u'LinkSetDb'][1][u'Link'])
 				print num_of_seqs
 				for seq in record[0][u'LinkSetDb'][1][u'Link']:
