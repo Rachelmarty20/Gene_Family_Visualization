@@ -72,7 +72,7 @@ for family in families:
 
 	for i in genes:
 		#check if already exists
-		if i not in genes_already:
+		if ((i not in genes_already) or (i != "CYP2AC1P")):
 			print i
 			#try efetch for gene database
 			handle = Entrez.esearch(db = "gene", term = i + '[gene] AND human[Orgn]')
