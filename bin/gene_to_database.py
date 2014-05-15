@@ -66,10 +66,17 @@ for family in families:
 		#print uid_comp
 		# drop table if exists
 		sql_drop = "DROP TABLE " + i + ";"
-		# create a table for each gene to hold sequences
-		sql_tables = "CREATE TABLE " + "'" + i + "'" + "(nuc_seq text, aa_seq text);"
+		print sql_drop
 		try:
-			cursor.execute(tables)
+			cursor.execute(sql_drop)
+			db.commit()
+		except:
+			db.rollback()
+		# create a table for each gene to hold sequences
+		sql_tables = "CREATE TABLE " + i + "(nuc_seq text, aa_seq text);"
+		print sql_tables
+		try:
+			cursor.execute(sql_tables)
 			db.commit()
 		except:
 			db.rollback()
@@ -78,32 +85,34 @@ for family in families:
 		handle = Entrez.elink(dbfrom="gene", db="nucleotide", id=uid_comp)
 		record = Entrez.read(handle)
 		#print record
-		num_of_seqs = len(record[0][u'LinkSetDb'][0][u'Link'])
-		print num_of_seqs
-		for seq in record[0][u'LinkSetDb'][0][u'Link']:
-			seq_id = seq[u'Id']
-			#print seq_id 
-			#if seq not in tables?
-			#if seq_id != '568815361':
-			handle = Entrez.efetch(db="nucleotide", id=seq_id, rettype="XML", retmode="XML") #rettype was gb
-			record_seq = Entrez.read(handle, validate = False)
-			#print record_seq[u'Bioseq-set_seq-set'][0]
-			#nuc_seq = record_seq[0][u'GBSeq_sequence']
-			try:
+		try:
+			num_of_seqs = len(record[0][u'LinkSetDb'][1][u'Link'])
+			print num_of_seqs
+			for seq in record[0][u'LinkSetDb'][1][u'Link']:
+				seq_id = seq[u'Id']
+				#print seq_id 
+				#if seq not in tables?
+				#if seq_id != '568815361':
+				handle = Entrez.efetch(db="nucleotide", id=seq_id, rettype="XML", retmode="XML") #rettype was gb
+				record_seq = Entrez.read(handle, validate = False)
+				#print record_seq[u'Bioseq-set_seq-set'][0]
+				#nuc_seq = record_seq[0][u'GBSeq_sequence']
 				nuc_seq = record_seq[u'Bioseq-set_seq-set'][0][u'Seq-entry_set'][u'Bioseq-set'][u'Bioseq-set_seq-set'][0][u'Seq-entry_seq'][u'Bioseq'][u'Bioseq_inst'][u'Seq-inst'][u'Seq-inst_seq-data'][u'Seq-data'][u'Seq-data_iupacna'][u'IUPACna']
-				print nuc_seq
+				nuc_seq = str(nuc_seq)
+				#print nuc_seq
 				#aa_seq = record_seq[0][u'GBSeq_feature-table'][5][u'GBFeature_quals'][9][u'GBQualifier_value'] 
 				aa_seq = record_seq[u'Bioseq-set_seq-set'][0][u'Seq-entry_set'][u'Bioseq-set'][u'Bioseq-set_seq-set'][1][u'Seq-entry_seq'][u'Bioseq'][u'Bioseq_inst'][u'Seq-inst'][u'Seq-inst_seq-data'][u'Seq-data'][u'Seq-data_iupacaa'][u'IUPACaa']
-				print aa_seq
-				sql_seq = "INSERT INTO " + "'" + seq + "'" + " (nuc_seq, aa_seq) VALUES (" + nuc_seq + ", " + aa_seq + ");"
-				print "sequences added"
-			except:
-				print "couldn't add sequences"	
-				try:
-					cursor.execute(sql_family)
-					db.commit()
-				except:
-					db.rollback()
+				aa_seq = str(aa_seq)
+				#print aa_seq
+				#sql_seq = "INSERT INTO " + i + " (nuc_seq, aa_seq) VALUES (" + nuc_seq + ", " + aa_seq + ");"
+				sql_seq = "INSERT INTO " + i + " VALUES (" + "'" + nuc_seq + "'" + ", " + "'" + aa_seq + "'" + ");"
+				print sql_seq
+				cursor.execute(sql_seq)
+				db.commit()
+		except:
+			#why errors for some and not others??
+			db.rollback()
+			print "error"
 
 db.close()
 
