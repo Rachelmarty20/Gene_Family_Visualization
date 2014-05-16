@@ -117,6 +117,7 @@ def get_seqs(gene):
 
 	#get sequences of main gene, need to change select statement!!!!!!!!!!!!!!!!!!
 	sql_seq = "SELECT nuc_seq, aa_seq FROM " + name_main + ";"
+	print sql_seq
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_seq)
