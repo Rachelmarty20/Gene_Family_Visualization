@@ -126,8 +126,8 @@ def get_seqs(gene):
 		#print results
 		#print len(results)
 		for row in results:
-			nuc_main = int(row[0])
-			aa_main = int(row[1])
+			nuc_main = str(row[0])
+			aa_main = str(row[1])
 	except:
 	   print "Error: unable to fetch data 3"
 
