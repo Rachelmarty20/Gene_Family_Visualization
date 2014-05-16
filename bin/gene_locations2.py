@@ -95,7 +95,7 @@ def get_seqs(gene):
 			families.append(row[0])
 #			print row[0]
 	except:
-	   print "Error: unable to fetch data"
+	   print "Error: unable to fetch data 1"
 
 	#get the location of the gene from the table of the gene family
 	sql_loc = "SELECT chr, start_loc, name, summary FROM " + families[0] + " WHERE name = " + "'" + gene + "'" + ";"
@@ -113,7 +113,7 @@ def get_seqs(gene):
 			name_main = str(row[2])
 			summary_main = str(row[3])
 	except:
-	   print "Error: unable to fetch data"
+	   print "Error: unable to fetch data 2"
 
 	#get sequences of main gene, need to change select statement!!!!!!!!!!!!!!!!!!
 	sql_seq = "SELECT nuc_seq, aa_seq FROM " + name_main + ";"
@@ -128,7 +128,7 @@ def get_seqs(gene):
 			nuc_main = int(row[0])
 			aa_main = int(row[1])
 	except:
-	   print "Error: unable to fetch data"
+	   print "Error: unable to fetch data 3"
 
 	#print chr_main
 	#print start_main
@@ -211,7 +211,7 @@ def get_seqs(gene):
 		results = cursor.fetchall()
 		#print results
 	except:
-	   print "Error: unable to fetch data"	   
+	   print "Error: unable to fetch data 4"	   
 
 	for row in results:
 		bucket_size = bucket_size_store
@@ -255,7 +255,7 @@ def get_seqs(gene):
 			results = cursor.fetchall()
 			#print results
 		except:
-		   print "Error: unable to fetch data"
+		   print "Error: unable to fetch data 5"
 		for row in results:
 			store_nuc = row[0]
 			store_aa = row[1]
