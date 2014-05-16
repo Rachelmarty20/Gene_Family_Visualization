@@ -75,6 +75,8 @@ def get_seqs(gene):
 	store_main = 0
 	store_sib = 0
 	counter = 0
+	nuc_score = 0
+	aa_score = 0
 	name = ''
 	summary = ''
 	name_main = ''
@@ -204,7 +206,7 @@ def get_seqs(gene):
 	#get the locations of the genes in the rest of the gene family
 	family = []
 	sql_loc2 = "SELECT chr, start_loc, name, summary FROM " + families[0] + " WHERE name <> " + "'" + gene + "'" + ";"
-#	print sql_loc2
+	print sql_loc2
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc2)
