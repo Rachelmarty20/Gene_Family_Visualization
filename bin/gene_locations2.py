@@ -245,13 +245,13 @@ def get_seqs(gene):
 
 	print family
 
-	for gene in family:
+	for fam in family:
 		if(fam[2] == 0):
 			fam[3] = 100
 
 		#get sequences (nuc and aa) for each gene
 		seqs = []
-		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + gene + " WHERE name <> " + "'" + gene + "'" + ";"
+		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
 		print sql_loc2
 		try:
 		   	# Execute the SQL command
