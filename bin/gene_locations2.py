@@ -129,7 +129,9 @@ def get_seqs(gene):
 		#print len(results)
 		for row in results:
 			nuc_main = str(row[0])
+			print nuc_main
 			aa_main = str(row[1])
+			print aa_main
 	except:
 	   print "Error: unable to fetch data 3"
 
@@ -241,7 +243,7 @@ def get_seqs(gene):
 		#equation to determine distance metric of 
 		family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-#	print family
+	print family
 
 	for gene in family:
 		if(fam[2] == 0):
