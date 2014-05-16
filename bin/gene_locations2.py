@@ -250,7 +250,7 @@ def get_seqs(gene):
 		#get sequences (nuc and aa) for each gene
 		seqs = []
 		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + gene + " WHERE name <> " + "'" + gene + "'" + ";"
-	#	print sql_loc2
+		print sql_loc2
 		try:
 		   	# Execute the SQL command
 			cursor.execute(sql_seqs)
