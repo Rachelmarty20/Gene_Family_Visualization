@@ -252,7 +252,7 @@ def get_seqs(gene):
 	print family
 
 	for fam in family:
-		print fam
+		print fam[4]
 		if(fam[2] == 0):
 			fam[3] = 100
 
@@ -266,9 +266,11 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			#print results
+			print len(results)
 		except:
 		   print "Error: unable to fetch data 5"
 		for row in results:
+			print row
 			store_nuc = row[0]
 			store_aa = row[1]
 			#compare sequences!!!!!!!!!!!!!!!
