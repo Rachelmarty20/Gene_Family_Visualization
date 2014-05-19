@@ -8,18 +8,10 @@ import alignment
 import build_matrix
 
 #method to find local alignment
-def loc_align():
-
-	#read parameters
-	file1 = str(sys.argv[1])
-	file2 = str(sys.argv[2])
-	match = int(sys.argv[3])
-	mismatch = int(sys.argv[4])
-	gap_open = int(sys.argv[5])
-	gap_extend = int(sys.argv[6])
+def loc_align(str1, str2, match, mismatch, gap_open, gap_extend):
 
 	#find the maximum length of best local alignment, no back-tracking
-	maxim, loci, locj = build_matrix.two_lined_matrix(file1, file2, match, mismatch, 
+	maxim, loci, locj = build_matrix.two_lined_matrix(str1, str2, match, mismatch, 
 		gap_open, gap_extend)	
 				
 	#output best score

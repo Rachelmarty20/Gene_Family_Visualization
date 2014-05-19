@@ -137,9 +137,9 @@ def get_seqs(gene):
 	   print "Error: unable to fetch data 3"
 	for row in results:
 		nuc_main = str(row[0])
-		print nuc_main
+		#print nuc_main
 		aa_main = str(row[1])
-		print aa_main
+		#print aa_main
 
 	#print chr_main
 	#print start_main
@@ -214,7 +214,7 @@ def get_seqs(gene):
 	#get the locations of the genes in the rest of the gene family
 	family = []
 	sql_loc2 = "SELECT chr, start_loc, name, summary FROM " + families[0] + " WHERE name <> " + "'" + gene + "'" + ";"
-	print sql_loc2
+	#print sql_loc2
 	try:
 	   	# Execute the SQL command
 		cursor.execute(sql_loc2)
@@ -249,7 +249,7 @@ def get_seqs(gene):
 		#equation to determine distance metric of 
 		family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-#	print family
+	print family
 
 	for fam in family:
 		if(fam[2] == 0):
