@@ -281,8 +281,9 @@ def get_seqs(gene):
 				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
 				try:
 					seqs.append(fam[4], fam[0], store_nuc, nuc_score)
+					print "successfully added"
 				except:
-					"couldn't append to seq"
+					print "couldn't append to seq"
 
 	print seqs
 	try:
@@ -325,7 +326,7 @@ def get_seqs(gene):
 				#must change back to 2
 				node_num = node_num + 1
 		except:
-			"couldnt do sequences"
+			print "couldnt do sequences"
 
 
 		#create links betweeen all of the different levels
@@ -338,7 +339,7 @@ def get_seqs(gene):
 		print obj
 		json.dump(obj, f)
 	except:
-		"couldn't build object"
+		print "couldn't build object"
 
 
 #actual stuff
