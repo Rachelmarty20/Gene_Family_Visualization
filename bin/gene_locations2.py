@@ -256,29 +256,29 @@ def get_seqs(gene):
 
 		#get sequences (nuc and aa) for each gene
 		seqs = []
-		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
-		print sql_seqs
-		try:
+#		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
+#		print sql_seqs
+#		try:
 		   	# Execute the SQL command
-			cursor.execute(sql_seqs)
+#			cursor.execute(sql_seqs)
 			# Fetch all the rows in a list
-			results = cursor.fetchall()
+#			results = cursor.fetchall()
 			#print results
-		except:
-		   print "Error: unable to fetch data 5"
-		for row in results:
-			store_nuc = row[0]
-			store_aa = row[1]
+#		except:
+#		   print "Error: unable to fetch data 5"
+#		for row in results:
+#			store_nuc = row[0]
+#			store_aa = row[1]
 			#compare sequences!!!!!!!!!!!!!!!
-			nuc_score = (_align(nuc_main, store_nuc, match_fun, gap_A_fun, gap_B_fun, penalize_extend_when_opening="1", penalize_end_gaps="11", align_globally=0, gap_char='-', force_generic=0, score_only=1, one_alignment_only=1))
-			print nuc_score
+#			nuc_score = (_align(nuc_main, store_nuc, match_fun, gap_A_fun, gap_B_fun, penalize_extend_when_opening="1", penalize_end_gaps="11", align_globally=0, gap_char='-', force_generic=0, score_only=1, one_alignment_only=1))
+#			print nuc_score
 			#compare amino acid sequences
 
 
 
 			#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 			#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
-			seqs.append(fam[4], fam[0], store_nuc, nuc_score)
+#			seqs.append(fam[4], fam[0], store_nuc, nuc_score)
 
 	#create main dictionary object
 	obj = {}
@@ -309,14 +309,14 @@ def get_seqs(gene):
 
 	node_num = len(node)
 	#create loop for seq; maybe two for nuc and aa
-	for i in seqs:
+#	for i in seqs:
 		#keep a counter to know numbers of these nodes to link them
-		node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
-		link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
+		#node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
+		#link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
 		#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
 		#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
 		#must change back to 2
-		node_num = node_num + 1
+		#node_num = node_num + 1
 
 
 	#create links betweeen all of the different levels
@@ -330,18 +330,6 @@ def get_seqs(gene):
 	#print obj, write to json file
 #	print obj
 	json.dump(obj, f)
-
-def match_fun(a,b):
-	if(a == b): 
-		return 1
-	else:
-		return (-1)
-
-def gap_A_fun(a,b):
-	return -2.0
-
-def gap_B_fun(a,b):
-	return -1.0
 
 #actual stuff
 print "half"
