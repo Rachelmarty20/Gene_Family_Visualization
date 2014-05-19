@@ -284,6 +284,7 @@ def get_seqs(gene):
 				except:
 					"couldn't append to seq"
 
+	print seqs
 	try:
 		#create main dictionary object
 		obj = {}
@@ -317,7 +318,7 @@ def get_seqs(gene):
 			#create loop for seq; maybe two for nuc and aa
 			for i in seqs:
 				#keep a counter to know numbers of these nodes to link them
-				node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
+				node.append({'name':(i[0] + " transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
 				link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
 				#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
 				#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
