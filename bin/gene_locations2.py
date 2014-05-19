@@ -284,47 +284,47 @@ def get_seqs(gene):
 				except:
 					"couldn't append to seq"
 
+	try:
+		#create main dictionary object
+		obj = {}
+
+		#to track node numbers
+		tracker = {}
+		count = 1
+		#create node list of dictionary
+		node = []
+		#first, make the initial zero node, all will be attached to it
+		node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main)})
+		#start by making all of the inital distance nodes
+		for i in family:
+			#create individual dictionaries for each node
+			node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0])})
+			#create a dictionary to keep name and node number!
+			tracker[i[4]] = count
+			count = count + 1
+		#create link list of dictionary
+		link = []
+		#start by linking all nodes in family to node [0]
+		#put names in nuc and protein in order to be able to link them
+		counter = 0
+		for i in family:
+			counter = counter + 1
+			#create individual dictionaries for each link
+			link.append({'source':0, 'target':(counter), 'value':(3)})
+
+		node_num = len(node)
 		try:
-			#create main dictionary object
-			obj = {}
-
-			#to track node numbers
-			tracker = {}
-			count = 1
-			#create node list of dictionary
-			node = []
-			#first, make the initial zero node, all will be attached to it
-			node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main)})
-			#start by making all of the inital distance nodes
-			for i in family:
-				#create individual dictionaries for each node
-				node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0])})
-				#create a dictionary to keep name and node number!
-				tracker[i[4]] = count
-				count = count + 1
-			#create link list of dictionary
-			link = []
-			#start by linking all nodes in family to node [0]
-			#put names in nuc and protein in order to be able to link them
-			counter = 0
-			for i in family:
-				counter = counter + 1
-				#create individual dictionaries for each link
-				link.append({'source':0, 'target':(counter), 'value':(3)})
-
-			node_num = len(node)
-			try:
-				#create loop for seq; maybe two for nuc and aa
-				for i in seqs:
-					#keep a counter to know numbers of these nodes to link them
-					node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
-					link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
-					#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
-					#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
-					#must change back to 2
-					node_num = node_num + 1
-			except:
-				"couldnt do sequences"
+			#create loop for seq; maybe two for nuc and aa
+			for i in seqs:
+				#keep a counter to know numbers of these nodes to link them
+				node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
+				link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
+				#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
+				#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+				#must change back to 2
+				node_num = node_num + 1
+		except:
+			"couldnt do sequences"
 
 
 		#create links betweeen all of the different levels
