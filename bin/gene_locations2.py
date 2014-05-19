@@ -256,7 +256,7 @@ def get_seqs(gene):
 		print fam[4]
 		if(fam[2] == 0):
 			fam[3] = 100
-		else
+		else:
 			#get sequences (nuc and aa) for each gene
 			sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
 			print sql_seqs
