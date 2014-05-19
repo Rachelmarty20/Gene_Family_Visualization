@@ -31,7 +31,7 @@
 
 $(function() {
   $('#gene-info').click(function(e) {
-      var url = '../bin/gene_locations2.py';
+      var url = '../bin/gene_locations.py';
       var term = $('#inputgene').val();
       //alert(term);
       $.ajax({
