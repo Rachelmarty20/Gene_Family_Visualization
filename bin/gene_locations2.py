@@ -279,8 +279,12 @@ def get_seqs(gene):
 
 				#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
+				print fam[4]
+				print fam[0]
+				print store_nuc
+				print nuc_score
 				try:
-					seqs.append(fam[4], fam[0], store_nuc, nuc_score)
+					seqs.append([fam[4], fam[0], store_nuc, nuc_score])
 					print "successfully added"
 				except:
 					print "couldn't append to seq"
