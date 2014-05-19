@@ -15,8 +15,8 @@ from Bio.SubsMat import MatrixInfo as matlist
 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
-#mygene = "CDH11"
+#mygene = form.getvalue("mygene")
+mygene = "CDH11"
 print mygene
 #print 'hello'
 
