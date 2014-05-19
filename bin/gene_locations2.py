@@ -279,7 +279,10 @@ def get_seqs(gene):
 
 			#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 			#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
-			seqs.append(fam[4], fam[0], store_nuc, nuc_score)
+			try:
+				seqs.append(fam[4], fam[0], store_nuc, nuc_score)
+			except:
+				"couldn't append to seq"
 
 	try:
 		#create main dictionary object
