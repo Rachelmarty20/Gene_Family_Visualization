@@ -252,6 +252,7 @@ def get_seqs(gene):
 	print family
 
 	for fam in family:
+		print fam
 		if(fam[2] == 0):
 			fam[3] = 100
 
