@@ -251,13 +251,13 @@ def get_seqs(gene):
 
 	print family
 
+	seqs = []
 	for fam in family:
 		print fam[4]
 		if(fam[2] == 0):
 			fam[3] = 100
 
 		#get sequences (nuc and aa) for each gene
-		seqs = []
 		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
 		print sql_seqs
 		try:
@@ -265,8 +265,7 @@ def get_seqs(gene):
 			cursor.execute(sql_seqs)
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
-			#print results
-			print len(results)
+			print results
 		except:
 		   print "Error: unable to fetch data 5"
 		for row in results:
@@ -278,62 +277,65 @@ def get_seqs(gene):
 			print nuc_score
 			#compare amino acid sequences
 
-
-
 			#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 			#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
 			seqs.append(fam[4], fam[0], store_nuc, nuc_score)
 
-	#create main dictionary object
-	obj = {}
+	try:
+		#create main dictionary object
+		obj = {}
 
-	#to track node numbers
-	tracker = {}
-	count = 1
-	#create node list of dictionary
-	node = []
-	#first, make the initial zero node, all will be attached to it
-	node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main)})
-	#start by making all of the inital distance nodes
-	for i in family:
-		#create individual dictionaries for each node
-		node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0])})
-		#create a dictionary to keep name and node number!
-		tracker[i[4]] = count
-		count = count + 1
-	#create link list of dictionary
-	link = []
-	#start by linking all nodes in family to node [0]
-	#put names in nuc and protein in order to be able to link them
-	counter = 0
-	for i in family:
-		counter = counter + 1
-		#create individual dictionaries for each link
-		link.append({'source':0, 'target':(counter), 'value':(3)})
+		#to track node numbers
+		tracker = {}
+		count = 1
+		#create node list of dictionary
+		node = []
+		#first, make the initial zero node, all will be attached to it
+		node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main)})
+		#start by making all of the inital distance nodes
+		for i in family:
+			#create individual dictionaries for each node
+			node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0])})
+			#create a dictionary to keep name and node number!
+			tracker[i[4]] = count
+			count = count + 1
+		#create link list of dictionary
+		link = []
+		#start by linking all nodes in family to node [0]
+		#put names in nuc and protein in order to be able to link them
+		counter = 0
+		for i in family:
+			counter = counter + 1
+			#create individual dictionaries for each link
+			link.append({'source':0, 'target':(counter), 'value':(3)})
 
-	node_num = len(node)
-	#create loop for seq; maybe two for nuc and aa
-	for i in seqs:
-		#keep a counter to know numbers of these nodes to link them
-		node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
-		link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
-		#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
-		#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
-		#must change back to 2
-		node_num = node_num + 1
-
-
-	#create links betweeen all of the different levels
-
-	#add node and link into obj
-	obj['nodes'] = node
-	obj['links'] = link
+		node_num = len(node)
+		try:
+			#create loop for seq; maybe two for nuc and aa
+			for i in seqs:
+				#keep a counter to know numbers of these nodes to link them
+				node.append({'name':(i[0] + "transcript"), 'size':(i[3]*10), 'chromosome':i[1]})
+				link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
+				#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
+				#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+				#must change back to 2
+				node_num = node_num + 1
+		except:
+			"couldnt do sequences"
 
 
+		#create links betweeen all of the different levels
 
-	#print obj, write to json file
-	print obj
-	json.dump(obj, f)
+		#add node and link into obj
+		obj['nodes'] = node
+		obj['links'] = link
+
+		#print obj, write to json file
+		print obj
+		json.dump(obj, f)
+	except:
+		"couldn't build object"
+
 
 #actual stuff
 print "half"
