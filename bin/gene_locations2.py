@@ -256,38 +256,39 @@ def get_seqs(gene):
 		print fam[4]
 		if(fam[2] == 0):
 			fam[3] = 100
-		else:
-			#get sequences (nuc and aa) for each gene
-			sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
-			print sql_seqs
-			try:
-			   	# Execute the SQL command
-				cursor.execute(sql_seqs)
-				# Fetch all the rows in a list
-				results = cursor.fetchall()
-				print results
-			except:
-			   print "Error: unable to fetch data 5"
-			for row in results:
-				print row
-				store_nuc = row[0]
-				store_aa = row[1]
-				#compare sequences!!!!!!!!!!!!!!!
-				nuc_score = local_alignment.loc_align(store_nuc, nuc_main, 1, -3, -2, -1)
-				print nuc_score
-				#compare amino acid sequences
+		
+		#get sequences (nuc and aa) for each gene
+		sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
+		print sql_seqs
+		try:
+		   	# Execute the SQL command
+			cursor.execute(sql_seqs)
+			# Fetch all the rows in a list
+			results = cursor.fetchall()
+			print results
+		except:
+		   print "Error: unable to fetch data 5"
+		for row in results:
+			print row
+			store_nuc = row[0]
+			store_aa = row[1]
+			#compare sequences!!!!!!!!!!!!!!!
+			nuc_score = local_alignment.loc_align(store_nuc, nuc_main, 1, -3, -2, -1)
+			print nuc_score
+			#compare amino acid sequences
 
-				#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
-				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
-				print fam[4]
-				print fam[0]
-				print store_nuc
-				print nuc_score
-				try:
-					seqs.append([fam[4], fam[0], store_nuc, nuc_score])
-					print "successfully added"
-				except:
-					print "couldn't append to seq"
+			#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
+			#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
+			print fam[4]
+			print fam[0]
+			print store_nuc
+			print nuc_score
+			try:
+				#use an ftp client to download emboss?
+				seqs.append([fam[4], fam[0], store_nuc, nuc_score])
+				print "successfully added"
+			except:
+				print "couldn't append to seq"
 
 	print seqs
 	try:
