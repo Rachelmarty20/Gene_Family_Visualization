@@ -10,5 +10,5 @@ cmd.bsequence = "asis:ACCCGAGCGCGGT"
 cmd.outfile = "temp_water.txt"
 #cline.outfile = sys.stdout
 print cmd
-stdout, stderr = cmd()
+subprocess.call(cmd)
 #cmd
