@@ -295,6 +295,7 @@ def get_seqs(gene):
 				print nuc_score
 				#compare amino acid sequences
 				aa_score = local_alignment.loc_align(store_aa, aa_main, 1 -3, -2, -1)
+				print aa_score
 				#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
 				print fam[4]
