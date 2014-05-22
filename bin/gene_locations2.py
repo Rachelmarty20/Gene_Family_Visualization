@@ -17,8 +17,8 @@ import local_alignment
 
 form = cgi.FieldStorage()
 mygene = form.getvalue("mygene")
-mygene = "CDH11"
-#print mygene
+#mygene = "CDH11"
+print mygene
 #print 'hello'
 
 
