@@ -50,11 +50,13 @@ def get_seqs(gene):
 	#if to check if gene has already been searched
 	if gene in searched_genes:
 		sql_fetch = "SELECT object FROM " + "'" + gene + "'" + ";"
+		print sql_fetch
 		try:
 		   	# Execute the SQL command
 			cursor.execute(sql_fetch)
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
+			print results
 			output = results[0]
 		except:
 		   print "Error: unable to fetch data 0.5"
