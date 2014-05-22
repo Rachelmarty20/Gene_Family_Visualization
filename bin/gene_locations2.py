@@ -293,6 +293,8 @@ def get_seqs(gene):
 				#compare sequences!!!!!!!!!!!!!!!
 				nuc_score = local_alignment.loc_align(store_nuc, nuc_main, 1, -3, -2, -1)
 				print nuc_score
+				print "score_aa: " + store_aa
+				print "aa_main: " + aa_main
 				#compare amino acid sequences
 				aa_score = local_alignment.loc_align(store_aa, aa_main, 1 -3, -2, -1)
 				print aa_score
