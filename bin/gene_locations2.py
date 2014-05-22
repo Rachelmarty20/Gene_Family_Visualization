@@ -36,7 +36,7 @@ def get_seqs(gene):
 
 	searched_genes = []
 	#query to get tables
-	sql_query = "Show tables;"
+	sql_query = "SELECT gene FROM existing;"
 #	print sql_families
 	try:
 	   	# Execute the SQL command
@@ -49,7 +49,7 @@ def get_seqs(gene):
 	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
 	if gene in searched_genes:
-		sql_fetch = "SELECT object FROM existing WHERE gene = " + gene + ";"
+		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
 		print sql_fetch
 		try:
 		   	# Execute the SQL command
