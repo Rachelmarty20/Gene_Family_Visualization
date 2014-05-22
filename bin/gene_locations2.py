@@ -17,8 +17,8 @@ import local_alignment
 
 form = cgi.FieldStorage()
 mygene = form.getvalue("mygene")
-#mygene = "CDH11"
-print mygene
+mygene = "CDH11"
+#print mygene
 #print 'hello'
 
 
@@ -362,7 +362,7 @@ def get_seqs(gene):
 		except:
 			print "couldn't build object"
 		#insert into database
-		sql_insert = "INSERT INTO existing (gene, object) VALUES " + "('%s');" % (obj)
+		sql_insert = "INSERT INTO existing (gene, object) VALUES " + "('%s','%s');" % (gene, obj)
 		try:
 				cursor.execute(sql_insert)
 				db.commit()
