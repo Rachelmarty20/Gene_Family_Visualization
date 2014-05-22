@@ -9,7 +9,7 @@ import build_matrix
 
 #method to find local alignment
 def loc_align(str1, str2, match, mismatch, gap_open, gap_extend):
-
+	print "in loc_align"
 	#find the maximum length of best local alignment, no back-tracking
 	maxim, loci, locj = build_matrix.two_lined_matrix(str1, str2, match, mismatch, 
 		gap_open, gap_extend)	
