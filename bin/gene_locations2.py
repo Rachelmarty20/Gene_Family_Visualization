@@ -367,9 +367,9 @@ def get_seqs(gene):
 				cursor.execute(sql_insert)
 				db.commit()
 			#	print "success2"
-			except:
-				db.rollback()	
-				print "fail"
+		except:
+			db.rollback()	
+			print "fail"
 
 #actual stuff
 print "half"
