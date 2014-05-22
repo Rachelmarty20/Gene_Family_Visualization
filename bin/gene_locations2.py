@@ -48,7 +48,7 @@ def get_seqs(gene):
 	except:
 	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
-	if gene is in searched_genes[]:
+	if gene in searched_genes[]:
 		sql_fetch = "SELECT object FROM " + "'" + gene + "'" + ";"
 		try:
 		   	# Execute the SQL command
