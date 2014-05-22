@@ -37,16 +37,16 @@ def get_seqs(gene):
 	searched_genes = []
 	#query to get tables
 	sql_query = "Show tables;"
-	#	print sql_families
-		try:
-		   	# Execute the SQL command
-			cursor.execute(sql_query)
-			# Fetch all the rows in a list
-			results = cursor.fetchall()
-			for row in results:
-				searched_genes.append(row[0])
-		except:
-		   print "Error: unable to fetch data 0"
+#	print sql_families
+	try:
+	   	# Execute the SQL command
+		cursor.execute(sql_query)
+		# Fetch all the rows in a list
+		results = cursor.fetchall()
+		for row in results:
+			searched_genes.append(row[0])
+	except:
+	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
 	if gene is in searched_genes[]:
 		sql_fetch = "SELECT object FROM " + "'" + gene + "'" + ";"
