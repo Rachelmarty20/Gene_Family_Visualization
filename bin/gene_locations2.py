@@ -294,7 +294,7 @@ def get_seqs(gene):
 				nuc_score = local_alignment.loc_align(store_nuc, nuc_main, 1, -3, -2, -1)
 				print nuc_score
 				#compare amino acid sequences
-
+				aa_score = local_alignment.loc_align(store_aa, aa_main, 1 -3, -2, -1)
 				#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
 				print fam[4]
@@ -303,7 +303,7 @@ def get_seqs(gene):
 				print nuc_score
 				try:
 					#use an ftp client to download emboss?
-					seqs.append([fam[4], fam[0], store_nuc, nuc_score])
+					seqs.append([fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score])
 					print "successfully added"
 				except:
 					print "couldn't append to seq"
@@ -344,10 +344,10 @@ def get_seqs(gene):
 					#keep a counter to know numbers of these nodes to link them
 					node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
 					link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
-					#node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
-					#link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+					node.append({'name':(i[0] + "protein"), 'size':(i[5]*10), 'chromosome':i[1]})
+					link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
 					#must change back to 2
-					node_num = node_num + 1
+					node_num = node_num + 2
 			except:
 				print "couldnt do sequences"
 
@@ -365,6 +365,7 @@ def get_seqs(gene):
 			print "couldn't build object"
 		#insert into database
 		sql_insert = "INSERT INTO existing (gene, object) VALUES " + "('%s','%s');" % (gene, obj)
+		print sql_insert
 		try:
 				cursor.execute(sql_insert)
 				db.commit()

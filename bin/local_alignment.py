@@ -50,8 +50,4 @@ def loc_align(str1, str2, match, mismatch, gap_open, gap_extend):
 	#print alignment
 	alignment.print_alignment(str1, str2)
 
-#call main method
-if __name__ == '__main__':
-	loc_align()
-
 
