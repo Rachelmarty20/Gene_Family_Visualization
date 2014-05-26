@@ -14,11 +14,13 @@ from Bio.SubsMat import MatrixInfo as matlist
 import local_alignment
 
 
+#add error statements that print to main page if error occurs; also a success statement
+#genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
 mygene = form.getvalue("mygene")
 #mygene = "CDH11"
-print mygene
+#print mygene
 #print 'hello'
 
 
@@ -62,7 +64,8 @@ def get_seqs(gene):
 			output = output.replace("'", '"')
 			print output
 		except:
-		  print "Error: unable to fetch data 0.5"
+		  print "This gene provides too much data for a helpful visualization. Please try another gene."
+		  return
 		#json.dump(output, f)
 		f.write(output)
 	else:
@@ -125,7 +128,8 @@ def get_seqs(gene):
 				families.append(row[0])
 	#			print row[0]
 		except:
-		   print "Error: unable to fetch data 1"
+		   print "This gene is not currently in our database. Please try another gene."
+		   return
 
 		#get the location of the gene from the table of the gene family
 		sql_loc = "SELECT chr, start_loc, name, summary FROM " + families[0] + " WHERE name = " + "'" + gene + "'" + ";"
@@ -143,7 +147,8 @@ def get_seqs(gene):
 				name_main = str(row[2])
 				summary_main = str(row[3])
 		except:
-		   print "Error: unable to fetch data 2"
+		   print "This gene is not currently in our database. Please try another gene."
+		   return 
 
 		#get sequences of main gene, need to change select statement!!!!!!!!!!!!!!!!!!
 		sql_seq = "SELECT nuc_seq, aa_seq FROM " + name_main + ";"
@@ -156,7 +161,8 @@ def get_seqs(gene):
 			#print results
 			#print len(results)
 		except:
-		   print "Error: unable to fetch data 3"
+		   print "Our database does not contain the sequences necessary for the visualization. Please try another gene."
+		   return
 		for row in results:
 			nuc_main = str(row[0])
 			#print nuc_main
@@ -271,25 +277,26 @@ def get_seqs(gene):
 			#equation to determine distance metric of 
 			family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-		print family
+		#print family
 
 		seqs = []
 		for fam in family:
-			print fam[4]
+			#print fam[4]
 			if(fam[2] == 0):
 				fam[3] = 100
 			
 			#get sequences (nuc and aa) for each gene
 			sql_seqs = "SELECT nuc_seq, aa_seq FROM " + fam[4] + ";"
-			print sql_seqs
+			#print sql_seqs
 			try:
 			   	# Execute the SQL command
 				cursor.execute(sql_seqs)
 				# Fetch all the rows in a list
 				results = cursor.fetchall()
-				print results
+				#print results
 			except:
-			   print "Error: unable to fetch data 5"
+				print "Our database does not contain the sequences necessary for the visualization. Please try another gene."
+				return
 			for row in results:
 				print row
 				store_nuc = row[0]
@@ -297,23 +304,18 @@ def get_seqs(gene):
 				#compare sequences!!!!!!!!!!!!!!!
 				nuc_score = local_alignment.loc_align(store_nuc, nuc_main, 1, -3, -2, -1)
 				#print nuc_score
-				print "store_aa: " + store_aa
-				print "aa_main: " + aa_main
+				#print "store_aa: " + store_aa
+				#print "aa_main: " + aa_main
 				#compare amino acid sequences
 				aa_score = local_alignment.loc_align(store_aa, aa_main, 1, -3, -2, -1)
 				#aa_score = local_alignment.loc_align(store_aa, aa_main, 1 -2, -1.5, -1)
 				#print aa_score
 				#appending gene name, chromosome, nucleotide sequence, nuc_score, amino acid sequence, aa_score
 				#seqs.append(fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score)
-				print fam[4]
-				print fam[0]
-				print store_nuc
-				print nuc_score
-				print aa_score
 				try:
 					#use an ftp client to download emboss?
 					seqs.append([fam[4], fam[0], store_nuc, nuc_score, store_aa, aa_score])
-					print "successfully added"
+					#print "successfully added"
 				except:
 					print "couldn't append to seq"
 
@@ -368,13 +370,13 @@ def get_seqs(gene):
 			obj['links'] = link
 
 			#print obj, write to json file
-			print obj
+			#print obj
 			json.dump(obj, f)
 		except:
 			print "couldn't build object"
 		#insert into database
 		sql_insert = "INSERT INTO existing (gene, object) VALUES " + '("%s","%s");' % (gene, obj)
-		print sql_insert
+		#print sql_insert
 		try:
 				cursor.execute(sql_insert)
 				db.commit()
@@ -384,12 +386,12 @@ def get_seqs(gene):
 			print "fail"
 
 #actual stuff
-print "half"
+#print "half"
 try:
 	get_seqs(mygene)
 	#get_seqs("CDH11")
-	print "success"
+#	print "success"
 except:
 	print "fail"
 
-print "done"
+#print "done"
