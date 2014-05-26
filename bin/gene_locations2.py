@@ -58,13 +58,15 @@ def get_seqs(gene):
 			results = cursor.fetchall()
 			output = results[0]
 			output = str(output)
+			hello = "hello"
+			print hello
 			print output
 			output = output[1:-1]
 			print output
 		except:
 		  print "Error: unable to fetch data 0.5"
-		json.dump(output, f)
-		#f.write(output)
+		#json.dump(output, f)
+		f.write(output)
 	else:
 		#sizes of all of the chromosomes
 		chr1 = 249250621
