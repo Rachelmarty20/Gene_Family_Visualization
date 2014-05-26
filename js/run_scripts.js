@@ -40,6 +40,7 @@ $(function() {
             data: {mygene: term},
             dataType: 'html',
             context: document.body
+            $('#ajax-div0').empty().append("Please wait.");
       }).done(function(response){
             //print("done doing things");
             console.log(response)
