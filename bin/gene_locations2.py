@@ -57,6 +57,7 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
+			output = str(output)
 			print output
 			output = output[1:-1]
 			print output
