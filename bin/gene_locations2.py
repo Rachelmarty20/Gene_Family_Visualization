@@ -56,8 +56,8 @@ def get_seqs(gene):
 			cursor.execute(sql_fetch)
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
-			#print results
 			output = results[0]
+			print output
 			output = output[1:-1]
 			print output
 		except:
