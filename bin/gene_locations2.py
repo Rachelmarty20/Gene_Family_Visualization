@@ -56,11 +56,13 @@ def get_seqs(gene):
 			cursor.execute(sql_fetch)
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
-			print results
+			#print results
 			output = results[0]
+			print output
 		except:
-		   print "Error: unable to fetch data 0.5"
-		f.write(output)
+		  print "Error: unable to fetch data 0.5"
+		json.dump(output, f)
+		#f.write(output)
 	else:
 		#sizes of all of the chromosomes
 		chr1 = 249250621
@@ -369,7 +371,7 @@ def get_seqs(gene):
 		except:
 			print "couldn't build object"
 		#insert into database
-		sql_insert = "INSERT INTO existing (gene, object) VALUES " + "('%s','%s');" % (gene, obj)
+		sql_insert = "INSERT INTO existing (gene, object) VALUES " + '("%s","%s");' % (gene, obj)
 		print sql_insert
 		try:
 				cursor.execute(sql_insert)
