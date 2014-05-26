@@ -58,6 +58,7 @@ def get_seqs(gene):
 			results = cursor.fetchall()
 			#print results
 			output = results[0]
+			output = output[1:-1]
 			print output
 		except:
 		  print "Error: unable to fetch data 0.5"
