@@ -87,7 +87,7 @@
           .attr("height", height);
 
       //take in the data
-      d3.json("../data/storage.json", function(error, graph) {
+      d3.json("../data/flare.json", function(error, graph) {
         force
             .nodes(graph.nodes)
             .links(graph.links)
