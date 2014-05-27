@@ -52,7 +52,7 @@ def get_seqs(gene):
 	#if to check if gene has already been searched
 	if gene in searched_genes:
 		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
-		print sql_fetch
+		#print sql_fetch
 		try:
 		   	# Execute the SQL command
 			cursor.execute(sql_fetch)
@@ -298,7 +298,7 @@ def get_seqs(gene):
 				print "Our database does not contain the sequences necessary for the visualization. Please try another gene."
 				return
 			for row in results:
-				print row
+				#print row
 				store_nuc = row[0]
 				store_aa = row[1]
 				#compare sequences!!!!!!!!!!!!!!!
@@ -319,7 +319,7 @@ def get_seqs(gene):
 				except:
 					print "couldn't append to seq"
 
-		print seqs
+		#print seqs
 		try:
 			#create main dictionary object
 			obj = {}
