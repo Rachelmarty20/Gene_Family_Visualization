@@ -12,6 +12,7 @@ from Bio.pairwise2 import _align
 import json 
 from Bio.SubsMat import MatrixInfo as matlist
 import local_alignment
+import create_bar
 
 
 #add error statements that print to main page if error occurs; also a success statement
@@ -50,7 +51,10 @@ def get_seqs(gene):
 	except:
 	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
-	if gene in searched_genes:
+
+
+	#!!!!!!!!! change back
+	if gene not in searched_genes:
 		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
 		#print sql_fetch
 		try:
@@ -278,6 +282,7 @@ def get_seqs(gene):
 			family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
 		#print family
+		
 
 		seqs = []
 		for fam in family:
@@ -319,6 +324,10 @@ def get_seqs(gene):
 				except:
 					print "couldn't append to seq"
 
+		try:
+			create_bar.bar(gene, chr_main, start_main, store_nuc, store_aa, family, seqs)
+		else:
+			"couldn't make bar chart"
 		#print seqs
 		try:
 			#create main dictionary object
