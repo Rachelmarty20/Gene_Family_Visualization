@@ -330,10 +330,10 @@ def get_seqs(gene):
 					print "couldn't append to seq"
 
 		print seqs
-		try:
+		#try:
 			#create_bar.bar(gene, chr_main, start_main, store_nuc, store_aa, family, seqs)
-		else:
-			"couldn't make bar chart"
+		#else:
+			#"couldn't make bar chart"
 		#print seqs
 		try:
 			#create main dictionary object
