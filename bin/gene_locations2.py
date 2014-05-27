@@ -19,8 +19,8 @@ import create_bar
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
-#mygene = "CDH11"
+#mygene = form.getvalue("mygene")
+mygene = "CDH11"
 #print mygene
 #print 'hello'
 
