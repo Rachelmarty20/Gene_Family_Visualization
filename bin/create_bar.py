@@ -20,17 +20,17 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		if(seq[1] != chr_main):
 			seqs.remove(seq)
 
-	print family
+	#print family
 
 	#sort by starting location of start_sib
 	family.sort(key=lambda x: x[1])
 
-	print family
+	#print family
 
 	#create a list of gene names to keep
 	seqs_lib = []
 	for seq in seqs:
-		seq_lib.append(seq[0])
+		seqs_lib.append(seq[0])
 
 	seqs_sorted = []
 
