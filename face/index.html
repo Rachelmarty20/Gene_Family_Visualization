@@ -62,13 +62,14 @@
           <label for="chooseGene">Input Gene</label>
           <input id="inputgene" type="inputgene1" class="form-control" placeholder="Input a gene" />
         </div>
-        <button id="gene-info" type="button" class="btn btn-lg btn-default">Analyze Gene</button> 
-        <p>Please be patient. If your search is novel, the result may take a couple minutes!</p>
-        <button type="button"
+        <p>
+          <button id="gene-info" type="button" class="btn btn-lg btn-default">Analyze Gene</button> 
+          <a class="btn btn-lg btn-primary" href="./network.html" role="button">Graph Visualization</a>
+          <a class="btn btn-lg btn-primary" href="./circo.html" role="button">Circo Visualization</a>
+        </p>
+        <p>Please be patient. A notification will appear when your analysis is complete. If your search is novel, the result may take a couple minutes!</p>
         <div id = "ajax-div0"></div> 
         <div id = "ajax-div"></div>
-        <a class="btn btn-lg btn-primary" href="./network.html" role="button">Graph Visualization</a>
-        <a class="btn btn-lg btn-primary" href="./circo.html" role="button">Circo Visualization</a>
       </form>
 
       <!--button id="see-visualization" type="button" class="btn btn-lg btn-default">See Visualization</button-->
