@@ -43,12 +43,12 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	header_list = []
 	header_list.append("Transcript and Location")
 	for fam in family:
-		header_list.append(fam[4] + " Transcript - " + fam[1])
+		header_list.append(str(fam[4]) + " Transcript - " + str(fam[1]))
 	wr.writerow(header_list)
 
 	for fam in family:
 		dist_list = []
-		dist_list.append(fam[4] + " Transcript - " + fam[1])
+		dist_list.append(str(fam[4]) + " Transcript - " + str(fam[1]))
 		counter = 0
 		for i in family:
 			nuc_score = local_alignment.loc_align(seqs_sorted[counter][2], nuc_main, 1, -3, -2, -1)
