@@ -39,6 +39,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 #		if seq[0] in seqs_lib:
 #			seqs_sorted.append(seq)
 
+	print everything
 	#combine into one larger list 
 	for fam in family:
 		for seq in seqs:
