@@ -1,324 +1,121 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>Andrew's Test</title>
 <style>
 
-
- 
-html {
-min-width: 1040px;
-}
- 
 body {
-background: #fcfcfa;
-color: #333;
-font-family: "PT Serif", serif;
-margin: 1em auto 4em auto;
-position: relative;
-width: 960px;
-}
- 
-header,
-footer,
-h1,
-h2,
-h3,
-h4,
-aside {
-color: #000;
-font-family: "PT Sans", sans-serif;
-}
- 
-h1 {
-font-size: 64px;
-font-weight: 300;
-letter-spacing: -2px;
-margin: .3em 0 .1em 0;
-}
- 
-h2 {
-margin-top: 2em;
-}
- 
-h1, h2 {
-text-rendering: optimizeLegibility;
-}
- 
-h2 a {
-color: #ccc;
-left: -20px;
-position: absolute;
-width: 740px;
-}
- 
-footer {
-font-size: small;
-margin-top: 8em;
-}
- 
-header aside {
-margin-top: 88px;
-}
- 
-header aside,
-footer aside {
-color: #636363;
-text-align: right;
-}
- 
-aside {
-font-size: small;
-right: 0;
-position: absolute;
-width: 180px;
-}
- 
-.attribution {
-font-size: small;
-margin-bottom: 2em;
-}
- 
-body > p, li > p {
-line-height: 1.5em;
-}
- 
-body > p {
-width: 720px;
-}
- 
-body > blockquote {
-width: 640px;
-}
- 
-blockquote q {
-display: block;
-font-style: oblique;
-}
- 
-li {
-width: 680px;
-}
- 
-a {
-color: steelblue;
-}
- 
-a:not(:hover) {
-text-decoration: none;
-}
- 
-pre, code, textarea {
-font-family: "Menlo", monospace;
-}
- 
-code {
-line-height: 1em;
-}
- 
-textarea {
-font-size: 100%;
-}
- 
-body > pre {
-border-left: solid 2px #ccc;
-padding-left: 18px;
-margin: 2em 0 2em -20px;
-}
- 
-.html .value,
-.javascript .string,
-.javascript .regexp {
-color: #756bb1;
-}
- 
-.html .tag,
-.css .tag,
-.javascript .keyword {
-color: #3182bd;
-}
- 
-.comment {
-color: #636363;
-}
- 
-.html .doctype,
-.javascript .number {
-color: #31a354;
-}
- 
-.html .attribute,
-.css .attribute,
-.javascript .class,
-.javascript .special {
-color: #e6550d;
-}
- 
-svg {
-font: 10px sans-serif;
-}
- 
-.axis path, .axis line {
-fill: none;
-stroke: #000;
-shape-rendering: crispEdges;
-}
- 
-sup, sub {
-line-height: 0;
-}
- 
-q:before {
-content: "â€œ";
-}
- 
-q:after {
-content: "â€";
-}
- 
-blockquote:before {
-position: absolute;
-left: 2em;
-}
- 
-blockquote:after {
-position: absolute;
+  font: 10px sans-serif;
 }
 
-@import url(style.css);
- 
-#circle circle {
-fill: none;
-pointer-events: all;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
- 
-.group path {
-fill-opacity: .5;
+
+.bar {
+  fill: steelblue;
 }
- 
-path.chord {
-stroke: #000;
-stroke-width: .25px;
+
+.x.axis path {
+  display: none;
 }
- 
-#circle:hover path.fade {
-display: none;
-}
- 
+
 </style>
- 
-<header>
-<aside>November 14th, 2013</aside>
-<p>Modified from Mike Bostock's <a href="http://bost.ocks.org/mike/uberdata/">Uber Rides by Neighborhood</a></p>
-<p>Modified from eleyine's <a href="http://bl.ocks.org/eleyine/raw/6846156/">Visa requirements in Arab countries</a></p>
-</header>
- 
-<h1>Andrew's Test</h1>
- 
-<aside>Mouseover to focus on travel to and from a particular city.</aside>
- 
-<p>Built with <a href="http://d3js.org/">d3.js</a>.</aside>
- 
-<script src="../vendor/D3.v3.js" charset="utf-8"></script>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
- 
-var width = 720,
-height = 720,
-outerRadius = Math.min(width, height) / 2 - 10,
-innerRadius = outerRadius - 24;
- 
-var formatPercent = d3.format(".1%");
- 
-var arc = d3.svg.arc()
-.innerRadius(innerRadius)
-.outerRadius(outerRadius);
- 
-var layout = d3.layout.chord()
-.padding(.04)
-.sortSubgroups(d3.descending)
-.sortChords(d3.ascending);
- 
-var path = d3.svg.chord()
-.radius(innerRadius);
- 
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var xAxis = d3.svg.axis()
+    .scale(x0)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(d3.format(".2s"));
+
 var svg = d3.select("body").append("svg")
-.attr("width", width)
-.attr("height", height)
-.append("g")
-.attr("id", "circle")
-.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
- 
-svg.append("circle")
-.attr("r", outerRadius);
- 
-d3.csv("teams.csv", function(cities) {
-d3.json("matrix.json", function(matrix) {
- 
-// Compute the chord layout.
-layout.matrix(matrix);
- 
-// Add a group per neighborhood.
-var group = svg.selectAll(".group")
-.data(layout.groups)
-.enter().append("g")
-.attr("class", "group")
-.on("mouseover", mouseover);
- 
-// Add a mouseover title.
-// group.append("title").text(function(d, i) {
-// return cities[i].name + ": " + formatPercent(d.value) + " of origins";
-// });
- 
-// Add the group arc.
-var groupPath = group.append("path")
-.attr("id", function(d, i) { return "group" + i; })
-.attr("d", arc)
-.style("fill", function(d, i) { return cities[i].color; });
- 
-// Add a text label.
-var groupText = group.append("text")
-.attr("x", 6)
-.attr("dy", 15);
- 
-groupText.append("textPath")
-.attr("xlink:href", function(d, i) { return "#group" + i; })
-.text(function(d, i) { return cities[i].name; });
- 
-// Remove the labels that don't fit. :(
-groupText.filter(function(d, i) { return groupPath[0][i].getTotalLength() / 2 - 16 < this.getComputedTextLength(); })
-.remove();
- 
-// Add the chords.
-var chord = svg.selectAll(".chord")
-.data(layout.chords)
-.enter().append("path")
-.attr("class", "chord")
-.style("fill", function(d) { return cities[d.source.index].color; })
-.attr("d", path);
- 
-// Add an elaborate mouseover title for each chord.
- chord.append("title").text(function(d) {
- return cities[d.source.index].name
- + " → " + cities[d.target.index].name
- + ": " + formatPercent(d.source.value)
- + "\n" + cities[d.target.index].name
- + " → " + cities[d.source.index].name
- + ": " + formatPercent(d.target.value);
- });
- 
-function mouseover(d, i) {
-chord.classed("fade", function(p) {
-return p.source.index != i
-&& p.target.index != i;
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv("../data/genes.csv", function(error, data) {
+  var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
+
+  data.forEach(function(d) {
+    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+  });
+
+  x0.domain(data.map(function(d) { return d.State; }));
+  x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Population");
+
+  var state = svg.selectAll(".state")
+      .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.ages; })
+    .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(ageNames.slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
 });
-}
-});
-});
- 
+
 </script>
- 
- 
-<footer>
-<aside>November 14th, 2013</aside>
-<p>Modified from Mike Bostock's <a href="http://bost.ocks.org/mike/uberdata/">Uber Rides by Neighborhood</a></p>
-<p>Modified from eleyine's <a href="http://bl.ocks.org/eleyine/raw/6846156/">Visa requirements in Arab countries</a></p>
-</footer>
