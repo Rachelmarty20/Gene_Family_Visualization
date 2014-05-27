@@ -60,9 +60,11 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		dist_list = []
 		dist_list.append(str(ever[0]) + " Transcript - " + str(ever[2]))
 		for i in everything:
-			nuc_score = local_alignment.loc_align(everything[counter][3], i[3] , 1, -3, -2, -1)
-			dist_list.append(nuc_score)
-			dist_list.append(0)	
+			if i[3] != ever[3]:
+				nuc_score = local_alignment.loc_align(everything[counter][3], i[3] , 1, -3, -2, -1)
+				dist_list.append(nuc_score)
+			else:
+				dist_list.append(0)	
 		counter = counter + 1
 		wr.writerow(dist_list)	
 
