@@ -150,7 +150,9 @@ def get_seqs(gene):
 			#print len(results)
 			for row in results:
 				chr_main = int(row[0])
+				print chr_main
 				start_main = int(row[1])
+				print start_main
 				name_main = str(row[2])
 				summary_main = str(row[3])
 		except:
@@ -172,9 +174,9 @@ def get_seqs(gene):
 		   return
 		for row in results:
 			nuc_main = str(row[0])
-			#print nuc_main
+			print nuc_main
 			aa_main = str(row[1])
-			#print aa_main
+			print aa_main
 
 		#print chr_main
 		#print start_main
@@ -284,7 +286,7 @@ def get_seqs(gene):
 			#equation to determine distance metric of 
 			family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-		#print family
+		print family
 		
 
 		seqs = []
@@ -327,8 +329,9 @@ def get_seqs(gene):
 				except:
 					print "couldn't append to seq"
 
+		print seqs
 		try:
-			create_bar.bar(gene, chr_main, start_main, store_nuc, store_aa, family, seqs)
+			#create_bar.bar(gene, chr_main, start_main, store_nuc, store_aa, family, seqs)
 		else:
 			"couldn't make bar chart"
 		#print seqs

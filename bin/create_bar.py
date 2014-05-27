@@ -57,8 +57,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			counter = counter + 1
 		wr.writerow(dist_list)	
 
-
-
+bar("CDH11", 6, )
 
 
 
