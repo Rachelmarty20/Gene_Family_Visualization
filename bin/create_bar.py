@@ -44,7 +44,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		print fam
 		for seq in seqs:
 			print seq
-			if (fam[4] == seq[0]:
+			if (fam[4] == seq[0]):
 				everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])
 
 	print everything
