@@ -52,9 +52,9 @@ def get_seqs(gene):
 	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
 
-
+	searched_genes.remove("CDH11")
 	#!!!!!!!!! change back
-	if gene not in searched_genes:
+	if gene in searched_genes:
 		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
 		#print sql_fetch
 		try:
