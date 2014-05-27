@@ -62,7 +62,7 @@ def get_seqs(gene):
 			output = str(output)
 			output = output[2:-3]
 			output = output.replace("'", '"')
-			print output
+			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
