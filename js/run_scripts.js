@@ -33,18 +33,18 @@ $(function() {
   $('#gene-info').click(function(e) {
       var url = '../bin/gene_locations2.py';
       var term = $('#inputgene').val();
-      //alert(term);
+      alert("Analysis complete! Please go to visualization page.");
       $.ajax({
             type: "POST",
             url: url,
             data: {mygene: term},
             dataType: 'html',
             context: document.body
-            $('#ajax-div0').empty().append("Please wait.");
+            //$('#ajax-div0').empty().append("Please wait.");
       }).done(function(response){
             //print("done doing things");
             console.log(response)
-            //window.location='./network.html'
+            window.location='./network.html'
             $('#ajax-div').empty().append(response);
             //alert(response);//Data files created for sunburst and heatmap views.");
       });
