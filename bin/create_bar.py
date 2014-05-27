@@ -39,14 +39,15 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 #		if seq[0] in seqs_lib:
 #			seqs_sorted.append(seq)
 
-	print everything
 	#combine into one larger list 
 	for fam in family:
+		print fam
 		for seq in seqs:
-			if fam[4] == seqs[0]:
+			print seq
+			if (fam[4] == seq[0]:
 				everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])
 
-
+	print everything
 	#create header list and insert into csv
 	header_list = []
 	header_list.append("Transcript and Location")
