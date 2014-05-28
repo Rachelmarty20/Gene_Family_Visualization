@@ -83,7 +83,10 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	print matrix	
 	count = 0	
 	for dist_list in matrix:
+		print dist_list
+		wr.writerow(dist_list)
 		dist_list_temp = dist_list
+		print dist_list_temp
 		dist_list_comp = dist_list_temp.insert(0, everything[count][0])
 		print dist_list_comp	
 		wr.writerow(dist_list_comp)
