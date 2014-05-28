@@ -65,7 +65,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	#counter_i = 0
 	dist = 0
 	for ever in everything:
-		matrix[ever][counter_ever] = (str(ever[0]) + "-" + str(ever[2]))
+		matrix[counter_ever][0] = (str(ever[0]) + "-" + str(ever[2]))
 		counter_i = 1
 		for i in everything:
 			if((matrix[counter_ever][counter_i+1] == 0) and (matrix[counter_i][counter_ever+1] == 0)):
