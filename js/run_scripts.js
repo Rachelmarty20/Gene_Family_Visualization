@@ -33,7 +33,7 @@ $(function() {
   $('#gene-info').click(function(e) {
       var url = '../bin/gene_locations2.py';
       var term = $('#inputgene').val();
-      alert("Analysis complete! Please choose a visualization.");
+      //alert("Analysis complete! Please choose a visualization.");
       $.ajax({
             type: "POST",
             url: url,
