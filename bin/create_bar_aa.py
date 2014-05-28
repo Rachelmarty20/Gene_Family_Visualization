@@ -57,6 +57,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	wr.writerow(header_list)
 
 	matrix = [[0 for i in range(len(everything))] for j in range(len(everything))]
+	print matrix
 	counter_ever = 0
 	counter_i = 0
 	dist = 0
@@ -74,7 +75,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 					#dist_list.append(0)	
 				matrix[counter_i][counter_ever], matrix[counter_ever][counter_i] = dist, dist
 			counter_i = counter_i + 1	
+			print counter_i
 		counter_ever = counter_ever + 1
+		print counter_ever
 		
 	count = 0	
 	for dist_list in matrix:
