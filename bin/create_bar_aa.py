@@ -4,6 +4,7 @@ print "Content-type: text/html\n\n"
 
 import csv
 import local_alignment
+import MySQLdb
 
 
 def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
