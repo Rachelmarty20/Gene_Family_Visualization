@@ -6,7 +6,7 @@ import local_alignment
 
 def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	myfile = open('../data/genes.csv', 'wb')
-	wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+	wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
 
 	#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 	#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
