@@ -144,7 +144,6 @@ if gene in searched_genes:
 		#print output
 	except:
 	  print "This gene provides too much data for a helpful visualization. Please try another gene."
-	  return
 	#json.dump(output, f)
 	f.write(output)
 #information has not yet been stored
