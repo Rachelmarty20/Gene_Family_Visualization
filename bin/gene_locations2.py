@@ -52,11 +52,6 @@ def get_seqs(gene):
 	   print "Error: unable to fetch data 0"
 	#if to check if gene has already been searched
 
-	try:
-		searched_genes.remove("CDH11")
-	except:
-		print "couldn't remove"
-	#!!!!!!!!! change back
 	if gene in searched_genes:
 		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
 		#print sql_fetch
@@ -329,7 +324,7 @@ def get_seqs(gene):
 				except:
 					print "couldn't append to seq"
 
-		print seqs
+		#print seqs
 		try:
 			#create main dictionary object
 			obj = {}
@@ -358,6 +353,7 @@ def get_seqs(gene):
 				#create individual dictionaries for each link
 				link.append({'source':0, 'target':(counter), 'value':(3)})
 
+			print link
 			node_num = len(node)
 			try:
 				#create loop for seq; maybe two for nuc and aa
