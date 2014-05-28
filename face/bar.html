@@ -56,7 +56,7 @@ body {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.csv("../data/genes.csv", function(error, data) {
+  d3.csv("../data/test.csv", function(error, data) {
     var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
 
     data.forEach(function(d) {
