@@ -56,7 +56,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		header_list.append(str(ever[0]) + " Protein - " + str(ever[2]))
 	wr.writerow(header_list)
 
-	matrix = [[0 for i in (len(everything))] for j in len(everything)]
+	matrix = [[0 for i in range(len(everything))] for j in range(len(everything))]
 	counter_ever = 0
 	counter_i = 0
 	dist = 0
