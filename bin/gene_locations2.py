@@ -12,15 +12,15 @@ from Bio.pairwise2 import _align
 import json 
 from Bio.SubsMat import MatrixInfo as matlist
 import local_alignment
-import create_bar
+#import create_bar
 
 
 #add error statements that print to main page if error occurs; also a success statement
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-#mygene = form.getvalue("mygene")
-mygene = "CDH11"
+mygene = form.getvalue("mygene")
+#mygene = "CDH11"
 #print mygene
 #print 'hello'
 
@@ -330,11 +330,6 @@ def get_seqs(gene):
 					print "couldn't append to seq"
 
 		print seqs
-		#try:
-			#create_bar.bar(gene, chr_main, start_main, store_nuc, store_aa, family, seqs)
-		#else:
-			#"couldn't make bar chart"
-		#print seqs
 		try:
 			#create main dictionary object
 			obj = {}
@@ -390,7 +385,7 @@ def get_seqs(gene):
 		except:
 			print "couldn't build object"
 		#insert into database
-		sql_insert = "INSERT INTO existing (gene, object) VALUES " + '("%s","%s");' % (gene, obj)
+		sql_insert = "INSERT INTO existing (gene, object, chr_main, start_main, nuc_main, aa_main, family, seqs) VALUES " + '("%s","%s","%d","%d","%s","%s","%s","%s");' % (gene, obj, chr_main, start_main, nuc_main, aa_main, family, seqs)
 		#print sql_insert
 		try:
 				cursor.execute(sql_insert)
