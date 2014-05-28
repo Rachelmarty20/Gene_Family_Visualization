@@ -166,6 +166,8 @@ else:
 			print family
 			seqs = str(row[6])
 			print seqs
+	except:
+		print "couldn't append"
 
 bar(gene, chrom, chr_start, nuc_main, aa_main, family, seqs)
 
