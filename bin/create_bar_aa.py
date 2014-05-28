@@ -67,7 +67,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		counter_i = 0
 		for i in everything:
 			if((matrix[counter_ever][counter_i] == 0) and (matrix[counter_i][counter_ever] == 0)):
-				if(i[2] != ever[2]):
+				if(i[3] != ever[3]):
 					aa_score = local_alignment.loc_align(ever[4], i[4] , 1, -3, -2, -1)
 					dist = aa_score
 					#dist_list.append(nuc_score)
