@@ -79,10 +79,13 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			print counter_i
 		counter_ever = counter_ever + 1
 		print counter_ever
-		
+	
+	print matrix	
 	count = 0	
 	for dist_list in matrix:
-		dist_list_comp = dist_list.insert(0, everything[count][0])	
+		dist_list_temp = dist_list
+		dist_list_comp = dist_list_temp.insert(0, everything[count][0])
+		print dist_list_comp	
 		wr.writerow(dist_list_comp)
 		count = count + 1	
 
