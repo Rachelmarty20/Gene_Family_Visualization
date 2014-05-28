@@ -59,11 +59,12 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	matrix = [[0 for i in range(len(everything))] for j in range(len(everything))]
 	print matrix
 	counter_ever = 0
-	counter_i = 0
+	#counter_i = 0
 	dist = 0
 	for ever in everything:
 		#dist_list = []
 		#dist_list.append(str(ever[0]) + " Protein - " + str(ever[2]))
+		counter_i = 0
 		for i in everything:
 			if((matrix[counter_ever][counter_i] == 0) and (matrix[counter_i][counter_ever] == 0)):
 				if(i[2] != ever[2]):
