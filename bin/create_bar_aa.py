@@ -178,9 +178,9 @@ else:
 			nuc_main = str(row[3])
 			aa_main = str(row[4])
 			family = str(row[5])
-			print "family: " + str(family)
+			print "family: " + list(family)
 			seqs = str(row[6])
-			print "seqs: " + str(seqs)
+			print "seqs: " + list(seqs)
 	except:
 		print "couldn't append"
 
