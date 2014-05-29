@@ -328,10 +328,10 @@ def get_seqs(gene):
 		#print start_main
 		#print nuc_main
 		#print aa_main			
-		#try:
-		#	bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
-		#except:
-		#	print "didn't enter create bar"
+		try:
+			bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
+		except:
+			print "didn't enter create bar"
 
 		#print seqs
 		try:
@@ -352,6 +352,7 @@ def get_seqs(gene):
 				#create a dictionary to keep name and node number!
 				tracker[i[4]] = count
 				count = count + 1
+			print tracker
 			#create link list of dictionary
 			link = []
 			#start by linking all nodes in family to node [0]
@@ -362,7 +363,7 @@ def get_seqs(gene):
 				#create individual dictionaries for each link
 				link.append({'source':0, 'target':(counter), 'value':(3)})
 
-			print link
+			#print link
 			node_num = len(node)
 			try:
 				#create loop for seq; maybe two for nuc and aa
@@ -370,22 +371,22 @@ def get_seqs(gene):
 					#keep a counter to know numbers of these nodes to link them
 					try:
 						node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
-						print tracker[i[0]]
-						print node_num					
+						print "tracker: " + str(tracker[i[0]])
+						print "Node_num: " + str(node_num)					
 					except:
-						print "1"
+						print "fail1"
 					try:
 						link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
 					except:
-						print "2"
+						print "fail2"
 					try:
 						node.append({'name':(i[0] + "protein"), 'size':(i[5]*300), 'chromosome':i[1]})
 					except:
-						print "3"
+						print "fail3"
 					try:
 						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
 					except:
-						print "4"
+						print "fail4"
 					#must change back to 2
 					node_num = node_num + 2
 			except:
