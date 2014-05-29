@@ -44,7 +44,7 @@ $(function() {
       }).done(function(response){
             //print("done doing things");
             console.log(response)
-            //window.location='./network.html'
+            //window.location='./analyzed.html'
             $('#ajax-div').empty().append(response);
             //alert(response);//Data files created for sunburst and heatmap views.");
       });
