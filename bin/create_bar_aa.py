@@ -177,10 +177,10 @@ else:
 			chr_start = int(row[2])
 			nuc_main = str(row[3])
 			aa_main = str(row[4])
-			family = str(row[5])
-			print "family: " + list(family)
-			seqs = str(row[6])
-			print "seqs: " + list(seqs)
+			family = list(row[5])
+			print "family: " + str(family)
+			seqs = list(row[6])
+			print "seqs: " + str(seqs)
 	except:
 		print "couldn't append"
 
