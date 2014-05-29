@@ -12,7 +12,7 @@ from Bio.pairwise2 import _align
 import json 
 from Bio.SubsMat import MatrixInfo as matlist
 import local_alignment
-import create_bar
+import create_bar_aa
 
 
 #add error statements that print to main page if error occurs; also a success statement
@@ -324,7 +324,7 @@ def get_seqs(gene):
 				except:
 					print "couldn't append to seq"
 		try:
-			create.bar(gene, chr_main, chr_start, nuc_main, aa_main, family, seqs)
+			create_bar_aa.bar(gene, chr_main, chr_start, nuc_main, aa_main, family, seqs)
 		except:
 			print "ARGGGGG NATE"
 
