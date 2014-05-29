@@ -149,7 +149,17 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			wr_b.writerow(dist_list_b)
 			count = count + 1
 	except:
-		"The bar visualizations could not be completed."	
+		"The bar visualizations could not be completed."
+	try:
+		bar = ''
+		bar_aa = ''
+		f = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv')
+		f_aa = open('/var/www/html/Gene_Family_Visualization/data/genes.csv')	
+		bar = f.read()
+		bar_aa = f_aa.read()
+	except:
+		print "couldn't read files as strings"
+	return bar, bar_aa
 
 
 def unique_items(L):

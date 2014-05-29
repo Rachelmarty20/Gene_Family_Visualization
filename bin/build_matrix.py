@@ -4,7 +4,7 @@
 #Method to find alignment score in a space-efficient way, two-lined matrix
 def two_lined_matrix(v, w, match, mismatch, gap_open, gap_extend):
 	#create two-lined matrices
-	print "in two_lined_matrix"
+	#print "in two_lined_matrix"
 	matrix = [[0 for i in range(len(w)+1 )] for j in range(2)]
 	maxim = 0
 	#matrices for deletion and insertion (affine gap penalties)

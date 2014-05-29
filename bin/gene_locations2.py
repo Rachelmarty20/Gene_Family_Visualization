@@ -145,9 +145,9 @@ def get_seqs(gene):
 			#print len(results)
 			for row in results:
 				chr_main = int(row[0])
-				print chr_main
+				#print chr_main
 				start_main = int(row[1])
-				print start_main
+				#print start_main
 				name_main = str(row[2])
 				summary_main = str(row[3])
 		except:
@@ -330,7 +330,7 @@ def get_seqs(gene):
 		#print aa_main			
 		try:
 			              #bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
-			create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
+			bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
 		except:
 			print "didn't enter create bar"
 
@@ -369,10 +369,22 @@ def get_seqs(gene):
 				#create loop for seq; maybe two for nuc and aa
 				for i in seqs:
 					#keep a counter to know numbers of these nodes to link them
-					node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
-					link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
-					node.append({'name':(i[0] + "protein"), 'size':(i[5]*300), 'chromosome':i[1]})
-					link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+					try:
+						node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
+					except:
+						print "1"
+					try:
+						link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
+					except:
+						print "2"
+					try:
+						node.append({'name':(i[0] + "protein"), 'size':(i[5]*300), 'chromosome':i[1]})
+					except:
+						print "3"
+					try:
+						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+					except:
+						print "4"
 					#must change back to 2
 					node_num = node_num + 2
 			except:
@@ -391,7 +403,7 @@ def get_seqs(gene):
 		except:
 			print "couldn't build object"
 		#insert into database
-		sql_insert = "INSERT INTO existing (gene, object, chr_main, start_main, nuc_main, aa_main, family, seqs) VALUES " + '("%s","%s","%d","%d","%s","%s","%s","%s");' % (gene, obj, chr_main, start_main, nuc_main, aa_main, family, seqs)
+		sql_insert = "INSERT INTO existing (gene, object, bar, bar_aa) VALUES " + '("%s","%s","%s","%s");' % (gene, obj, bar, bar_aa)
 		#print sql_insert
 		try:
 				cursor.execute(sql_insert)
