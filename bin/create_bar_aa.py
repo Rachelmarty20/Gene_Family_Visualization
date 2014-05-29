@@ -15,15 +15,26 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 
 		myfile_b = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'wb')
 		wr_b = csv.writer(myfile_b, quoting=csv.QUOTE_NONE)
-
+	except:
+		print "opening files"
+	try:
 		#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 		#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
 		family1 = []
 		seqs1 = []
+		print "family length: " + str(len(family))
+		print "seqs length: " + str(len(seqs))
 		for fam in family:
+			print fam
 			family1.append(fam)
 		for seq in seqs:
+			print seq
 			seq1.append(seq)
+	except:
+		print "switching lists"
+	try:
+		print "family1 length: " + str(len(family1))
+		print "seqs1 length: " + str(len(seqs1))
 		#remove all genes in family and seqs that are on a different chromosome
 		for fam in family1:
 			if(fam[0] != chr_main):
