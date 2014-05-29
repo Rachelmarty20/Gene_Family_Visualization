@@ -332,7 +332,7 @@ def get_seqs(gene):
 			              #bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
 		except:
-			print "ARGGGGG NATE"
+			print " "
 
 		#print seqs
 		try:

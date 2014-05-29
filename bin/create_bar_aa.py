@@ -8,104 +8,125 @@ import MySQLdb
 
 
 def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
-	myfile = open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'wb')
-	wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
+	try:
+		myfile = open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'wb')
+		wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
 
-	myfile_b = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'wb')
-	wr_b = csv.writer(myfile_b, quoting=csv.QUOTE_NONE)
+		myfile_b = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'wb')
+		wr_b = csv.writer(myfile_b, quoting=csv.QUOTE_NONE)
 
-	#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
-	#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
+		#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
+		#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
 
-	#remove all genes in family and seqs that are on a different chromosome
-	for fam in family:
-		if(fam[0] != chr_main):
-			family.remove(fam)
+		#remove all genes in family and seqs that are on a different chromosome
+		for fam in family:
+			if(fam[0] != chr_main):
+				family.remove(fam)
 
-	for seq in seqs:
-		if(seq[1] != chr_main):
-			seqs.remove(seq)
-
-	#print family
-
-	#sort by starting location of start_sib
-	family.sort(key=lambda x: x[1])
-
-	#print family
-
-	#create a list of gene names to keep
-#	seqs_lib = []
-#	for seq in seqs:
-#		seqs_lib.append(seq[0])
-
-#	seqs_sorted = []
-	everything = []
-	#another attempt to get all seqs in seqs_sorted without messing up order
-#	for seq in seqs:
-#		if seq[0] in seqs_lib:
-#			seqs_sorted.append(seq)
-
-	#combine into one larger list 
-	for fam in family:
-		print fam
 		for seq in seqs:
-			print seq
-			if (fam[4] == seq[0]):
-				everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])
-				#everything = 0-name, 1-chr, 2-start, 3-nuc, 4-aa, 5-summary 
+			if(seq[1] != chr_main):
+				seqs.remove(seq)
 
-	print len(everything)
-	#remove duplicate gene names
-	everything = list(unique_items(everything))
+		#print family
 
-	print len(everything)
-	#create header list and insert into csv
-	header_list = []
-	header_list.append("ProteinLocation")
-	for ever in everything:
-		header_list.append(str(ever[0]) + "-" + str(ever[2]))
-	wr.writerow(header_list)
+		#sort by starting location of start_sib
+		family.sort(key=lambda x: x[1])
 
-	matrix = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
-	matrix_b = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
-	print matrix
-	counter_ever = 0
-	#counter_i = 0
-	dist = 0
-	for ever in everything:
-		matrix[counter_ever][0] = (str(ever[0]) + "-" + str(ever[2]))
-		counter_i = 0
-		for i in everything:
-			if((matrix[counter_ever][counter_i+1] == 0) and (matrix[counter_i][counter_ever+1] == 0)):
-				if(i[3] != ever[3]):
-					aa_score = local_alignment.loc_align(ever[4], i[4] , 1, -3, -2, -1)
-					nuc_score = local_alignment.loc_align(ever[3], i[3], 1, -3, -2, -1)
-					dist = aa_score
-					dist_b = nuc_score
-					#dist_list.append(nuc_score)
-				else:
-					dist = 0
-					dist_b = 0
-					#dist_list.append(0)	
-				matrix[counter_i][counter_ever+1], matrix[counter_ever][counter_i+1] = dist, dist
-				matrix_b[counter_i][counter_ever+1], matrix_b[counter_ever][counter_i+1] = dist_b, dist_b
-			counter_i = counter_i + 1	
-			print counter_i
-		counter_ever = counter_ever + 1
-		print counter_ever
-	
-	print matrix
-	print matrix_b	
-	count = 0	
-	for dist_list in matrix:
-		print dist_list
-		wr.writerow(dist_list)
-		count = count + 1
+		#print family
 
-	for dist_list in matrix_b:
-		print dist_list
-		wr_b.writerow(dist_list)
-		count = count + 1	
+		#create a list of gene names to keep
+	#	seqs_lib = []
+	#	for seq in seqs:
+	#		seqs_lib.append(seq[0])
+
+	#	seqs_sorted = []
+		everything = []
+		#another attempt to get all seqs in seqs_sorted without messing up order
+	#	for seq in seqs:
+	#		if seq[0] in seqs_lib:
+	#			seqs_sorted.append(seq)
+
+		#combine into one larger list 
+		for fam in family:
+			print fam
+			for seq in seqs:
+				print seq
+				if (fam[4] == seq[0]):
+					everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])
+					#everything = 0-name, 1-chr, 2-start, 3-nuc, 4-aa, 5-summary 
+
+		print len(everything)
+		#remove duplicate gene names
+		everything = list(unique_items(everything))
+
+		print len(everything)
+		#create header list and insert into csv
+		header_list = []
+		header_list.append("ProteinLocation")
+		for ever in everything:
+			header_list.append(str(ever[0]) + "-" + str(ever[2]))
+		wr.writerow(header_list)
+
+		maxim = 0
+		maxim_b = 0 
+		matrix = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
+		matrix_b = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
+		print matrix
+		counter_ever = 0
+		#counter_i = 0
+		dist = 0
+		for ever in everything:
+			matrix[counter_ever][0] = (str(ever[0]) + "-" + str(ever[2]))
+			matrix_b[counter_ever][0] = (str(ever[0]) + "-" + str(ever[2]))
+			counter_i = 0
+			for i in everything:
+				if((matrix[counter_ever][counter_i+1] == 0) and (matrix[counter_i][counter_ever+1] == 0)):
+					if(i[3] != ever[3]):
+						aa_score = local_alignment.loc_align(ever[4], i[4] , 1, -3, -2, -1)
+						nuc_score = local_alignment.loc_align(ever[3], i[3], 1, -3, -2, -1)
+						dist = aa_score
+						if dist > maxim:
+							maxim = dist
+						dist_b = nuc_score
+						if dist_b > maxim_b:
+							maxim_b = dist_b
+						#dist_list.append(nuc_score)
+					else:
+						dist = 0
+						dist_b = 0
+						#dist_list.append(0)	
+					matrix[counter_i][counter_ever+1], matrix[counter_ever][counter_i+1] = dist, dist
+					matrix_b[counter_i][counter_ever+1], matrix_b[counter_ever][counter_i+1] = dist_b, dist_b
+				counter_i = counter_i + 1	
+				print counter_i
+			counter_ever = counter_ever + 1
+			print counter_ever
+
+		counter_ever = 0
+		for ever in everything:
+			counter_i = 0
+			for i in everything:
+				if((matrix[counter_ever][counter_i+1] == 0) and (matrix[counter_i][counter_ever+1] == 0)):	
+					matrix[counter_i][counter_ever+1], matrix[counter_ever][counter_i+1] = maxim, maxim
+				if((matrix_b[counter_ever][counter_i+1] == 0) and (matrix_b[counter_i][counter_ever+1] == 0)):	
+					matrix_b[counter_i][counter_ever+1], matrix_b[counter_ever][counter_i+1] = maxim_b, maxim_b
+				counter_i = counter_i + 1
+			counter_ever = counter_ever + 1
+
+		print matrix
+		print matrix_b	
+		count = 0	
+		for dist_list in matrix:
+			print dist_list
+			wr.writerow(dist_list)
+			count = count + 1
+
+		for dist_list in matrix_b:
+			print dist_list
+			wr_b.writerow(dist_list)
+			count = count + 1
+	except:
+		"The bar visualizations could not be completed."	
 
 
 def unique_items(L):

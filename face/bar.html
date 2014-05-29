@@ -56,7 +56,7 @@ body {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.csv("../data/genes.csv", function(error, data) {
+  d3.csv("../data/genes_nuc.csv", function(error, data) {
     var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "ProteinLocation"; });
 
     data.forEach(function(d) {
@@ -80,7 +80,7 @@ body {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Population");
+        .text("Alignment Score");
 
     var ProteinLocation = svg.selectAll(".ProteinLocation")
         .data(data)
