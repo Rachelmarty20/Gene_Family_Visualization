@@ -19,8 +19,8 @@ import local_alignment
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
-#mygene = "CDH11"
+#mygene = form.getvalue("mygene")
+mygene = "APOL3"
 #print mygene
 #print 'hello'
 
