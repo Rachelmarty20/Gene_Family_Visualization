@@ -67,16 +67,16 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		for fam in family1:
 			#print fam
 			for seq in seqs1:
-				print seq
+				#print seq
 				if (fam[4] == seq[0]):
 					everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])
 					#everything = 0-name, 1-chr, 2-start, 3-nuc, 4-aa, 5-summary 
 
-		print len(everything)
+		#print len(everything)
 		#remove duplicate gene names
 		everything = list(unique_items(everything))
 
-		print len(everything)
+		#print len(everything)
 	except:
 		print "couldn't make everything"
 	try:
@@ -88,8 +88,8 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		for ever in everything:
 			header_list.append(str(ever[0]) + "-" + str(ever[2]))
 			header_list_b.append(str(ever[0]) + "-" + str(ever[2]))
-		print header_list
-		print header_list_b
+		#print header_list
+		#print header_list_b
 	except:
 		print "coudn't add first line"
 	try:
@@ -162,6 +162,8 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			#print dist_list_b
 			wr_b.writerow(dist_list_b)
 			count = count + 1
+		myfile.close()
+		myfile_b.close()
 	except:
 		"The bar visualizations could not be completed."
 	try:
@@ -169,8 +171,10 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		bar_aa = ''
 		with open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'r') as f:
 			bar = f.read()
-		with open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'r') as f:
-			bar_aa = f.read()	
+			print bar
+		with open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'r') as f_aa:
+			bar_aa = f_aa.read()
+			print bar_aa	
 		print bar
 		print bar_aa
 	except:
