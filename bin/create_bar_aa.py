@@ -25,12 +25,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		print "family length: " + str(len(family))
 		print "seqs length: " + str(len(seqs))
 		for fam in family:
-			#print str(fam)
-			#print str(type(fam))
 			family1.append(fam)
 		for seq in seqs:
-			#print str(seq)
-			seq1.append(seq)
+			seqs1.append(seq)
 	except:
 		print "switching lists"
 	try:
