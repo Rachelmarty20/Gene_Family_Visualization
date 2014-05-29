@@ -9,11 +9,11 @@ import MySQLdb
 
 def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	try:
-		myfile = open('./data/genes.csv', 'wb')
-		#myfile = open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'wb')
+		#myfile = open('./data/genes.csv', 'wb')
+		myfile = open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'wb')
 		wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
 
-		myfile_b = open('./data/genes_nuc.csv', 'wb')
+		myfile_b = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'wb')
 		wr_b = csv.writer(myfile_b, quoting=csv.QUOTE_NONE)
 
 		#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
