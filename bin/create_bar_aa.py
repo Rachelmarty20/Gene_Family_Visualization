@@ -161,7 +161,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		f = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv')
 		f_aa = open('/var/www/html/Gene_Family_Visualization/data/genes.csv')	
 		bar = f.read()
+		print bar
 		bar_aa = f_aa.read()
+		print bar_aa
 	except:
 		print "couldn't read files as strings"
 	return bar, bar_aa
