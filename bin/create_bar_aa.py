@@ -11,6 +11,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	myfile = open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'wb')
 	wr = csv.writer(myfile, quoting=csv.QUOTE_NONE)
 
+	myfile_b = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'wb')
+	wr_b = csv.writer(myfile_b, quoting=csv.QUOTE_NONE)
+
 	#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 	#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
 
@@ -64,6 +67,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	wr.writerow(header_list)
 
 	matrix = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
+	matrix_b = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
 	print matrix
 	counter_ever = 0
 	#counter_i = 0
@@ -75,23 +79,34 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			if((matrix[counter_ever][counter_i+1] == 0) and (matrix[counter_i][counter_ever+1] == 0)):
 				if(i[3] != ever[3]):
 					aa_score = local_alignment.loc_align(ever[4], i[4] , 1, -3, -2, -1)
+					nuc_score = local_alignment.loc_align(ever[3], i[3], 1, -3, -2, -1)
 					dist = aa_score
+					dist_b = nuc_score
 					#dist_list.append(nuc_score)
 				else:
 					dist = 0
+					dist_b = 0
 					#dist_list.append(0)	
 				matrix[counter_i][counter_ever+1], matrix[counter_ever][counter_i+1] = dist, dist
+				matrix_b[counter_i][counter_ever+1], matrix_b[counter_ever][counter_i+1] = dist_b, dist_b
 			counter_i = counter_i + 1	
 			print counter_i
 		counter_ever = counter_ever + 1
 		print counter_ever
 	
-	print matrix	
+	print matrix
+	print matrix_b	
 	count = 0	
 	for dist_list in matrix:
 		print dist_list
 		wr.writerow(dist_list)
+		count = count + 1
+
+	for dist_list in matrix_b:
+		print dist_list
+		wr_b.writerow(dist_list)
 		count = count + 1	
+
 
 def unique_items(L):
     found = set()
@@ -163,9 +178,9 @@ else:
 			nuc_main = str(row[3])
 			aa_main = str(row[4])
 			family = str(row[5])
-			print family
+			print "family: " + str(family)
 			seqs = str(row[6])
-			print seqs
+			print "seqs: " + str(seqs)
 	except:
 		print "couldn't append"
 
