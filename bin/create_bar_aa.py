@@ -123,66 +123,67 @@ def unique_items(L):
 
 
 #connect to db
-db = MySQLdb.connect("localhost","root","quaker22", "gene")
+#db = MySQLdb.connect("localhost","root","quaker22", "gene")
 
-gene = "APOL3"
+#gene = "APOL3"
 
 #setup cursor
-cursor = db.cursor()
+#cursor = db.cursor()
 
-searched_genes = []
+#searched_genes = []
 #query to get tables
-sql_query = "SELECT gene FROM existing2;"
+#sql_query = "SELECT gene FROM existing2;"
 #	print sql_families
-try:
+#try:
    	# Execute the SQL command
-	cursor.execute(sql_query)
+#	cursor.execute(sql_query)
 	# Fetch all the rows in a list
-	results = cursor.fetchall()
-	for row in results:
-		searched_genes.append(row[0])
-except:
-   print "Error: unable to fetch data 0"
+#	results = cursor.fetchall()
+#	for row in results:
+#		searched_genes.append(row[0])
+#except:
+#   print "Error: unable to fetch data 0"
 
 #if to check if gene has already been searched
-if gene in searched_genes:
-	sql_fetch = "SELECT object FROM existing2 WHERE gene = " + "'" + gene + "'" + ";"
+#if gene in searched_genes:
+#	sql_fetch = "SELECT object FROM existing2 WHERE gene = " + "'" + gene + "'" + ";"
 	#print sql_fetch
-	try:
+#	try:
 	   	# Execute the SQL command
-		cursor.execute(sql_fetch)
+#		cursor.execute(sql_fetch)
 		# Fetch all the rows in a list
-		results = cursor.fetchall()
-		output = results[0]
-		output = str(output)
-		output = output[2:-3]
-		output = output.replace("'", '"')
+#		results = cursor.fetchall()
+#		output = results[0]
+#		output = str(output)
+#		output = output[2:-3]
+#		output = output.replace("'", '"')
 		#print output
-	except:
-	  print "This gene provides too much data for a helpful visualization. Please try another gene."
+#	except:
+#	  print "This gene provides too much data for a helpful visualization. Please try another gene."
 	#json.dump(output, f)
-	f.write(output)
+#	f.write(output)
+	
 #information has not yet been stored
-else:
+#else:
 	#get the information to build the barchart
-	sql_bar = "SELECT gene, chr_main, start_main, nuc_main, aa_main, family, seqs FROM existing WHERE gene = " + "'" + gene + "'" + ";"
-	try:
+#	sql_bar = "SELECT gene, chr_main, start_main, nuc_main, aa_main, family, seqs FROM existing WHERE gene = " + "'" + gene + "'" + ";"
+#	try:
 	   	# Execute the SQL command
-		cursor.execute(sql_bar)
+#		cursor.execute(sql_bar)
 		# Fetch all the rows in a list
-		results = cursor.fetchall()
-		for row in results:
-			gene = str(row[0])
-			chrom = int(row[1])
-			chr_start = int(row[2])
-			nuc_main = str(row[3])
-			aa_main = str(row[4])
-			family = row[5]
-			print "family: " + str(family)
-			seqs = row[6]
-			print "seqs: " + str(seqs)
-	except:
-		print "couldn't append"
+#		results = cursor.fetchall()
+#		for row in results:
+#			gene = str(row[0])
+#			chrom = int(row[1])
+#			chr_start = int(row[2])
+#			nuc_main = str(row[3])
+#			aa_main = str(row[4])
+#			family = row[5]
+#			print "family: " + str(family)
+#			seqs = row[6]
+#			print "seqs: " + str(seqs)
+#	except:
+#		print "couldn't append"
 
 bar(gene, chrom, chr_start, nuc_main, aa_main, family, seqs)
 

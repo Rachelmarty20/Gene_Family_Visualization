@@ -323,6 +323,10 @@ def get_seqs(gene):
 					#print "successfully added"
 				except:
 					print "couldn't append to seq"
+		try:
+			bar(gene, chr_main, chr_start, nuc_main, aa_main, family, seqs)
+		except:
+			print "ARGGGGG NATE"
 
 		#print seqs
 		try:
