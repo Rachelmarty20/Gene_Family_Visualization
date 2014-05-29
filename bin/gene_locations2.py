@@ -362,7 +362,7 @@ def get_seqs(gene):
 				#create individual dictionaries for each link
 				link.append({'source':0, 'target':(counter), 'value':(3)})
 
-			#print link
+			print link
 			node_num = len(node)
 			try:
 				#create loop for seq; maybe two for nuc and aa
@@ -370,6 +370,8 @@ def get_seqs(gene):
 					#keep a counter to know numbers of these nodes to link them
 					try:
 						node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
+						print tracker[i[0]]
+						print node_num					
 					except:
 						print "1"
 					try:
@@ -401,13 +403,13 @@ def get_seqs(gene):
 			json.dump(obj, f)
 		except:
 			print "couldn't build object"
-		#insert into database
-		sql_insert = "INSERT INTO existing (gene, object, bar, bar_aa) VALUES " + '("%s","%s","%s","%s");' % (gene, obj, bar, bar_aa)
-		#print sql_insert
 		try:
-				cursor.execute(sql_insert)
-				db.commit()
-			#	print "success2"
+			#insert into database
+			sql_insert = "INSERT INTO existing (gene, object, bar, bar_aa) VALUES " + '("%s","%s","%s","%s");' % (gene, obj, bar, bar_aa)
+			#print sql_insert
+			cursor.execute(sql_insert)
+			db.commit()
+		#	print "success2"
 		except:
 			db.rollback()	
 			print "fail"
