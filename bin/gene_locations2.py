@@ -281,7 +281,7 @@ def get_seqs(gene):
 			#equation to determine distance metric of 
 			family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-		#print family
+		print "family length: " + str(len(family))
 		
 
 		seqs = []
@@ -327,12 +327,13 @@ def get_seqs(gene):
 		#print chr_main
 		#print start_main
 		#print nuc_main
-		#print aa_main			
+		#print aa_main	
+		print "family length: " + str(len(family))		
 		try:
 			bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
 		except:
 			print "didn't enter create bar"
-
+		print "family length: " + str(len(family))
 		#print seqs
 		try:
 			#create main dictionary object

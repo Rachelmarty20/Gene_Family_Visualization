@@ -143,12 +143,12 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		#print matrix_b	
 		count = 0	
 		for dist_list in matrix:
-			print dist_list
+			#print dist_list
 			wr.writerow(dist_list)
 			count = count + 1
 
 		for dist_list_b in matrix_b:
-			print dist_list_b
+			#print dist_list_b
 			wr_b.writerow(dist_list_b)
 			count = count + 1
 	except:
