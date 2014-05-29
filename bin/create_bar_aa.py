@@ -18,20 +18,23 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 
 		#family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 		#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
-
+		family1 = []
+		seqs1 = []
+		family1 = family
+		seqs1 = seqs
 		#remove all genes in family and seqs that are on a different chromosome
-		for fam in family:
+		for fam in family1:
 			if(fam[0] != chr_main):
-				family.remove(fam)
+				family1.remove(fam)
 
-		for seq in seqs:
+		for seq in seqs1:
 			if(seq[1] != chr_main):
-				seqs.remove(seq)
+				seqs1.remove(seq)
 
 		#print family
 
 		#sort by starting location of start_sib
-		family.sort(key=lambda x: x[1])
+		family1.sort(key=lambda x: x[1])
 	except:
 		print "couldn't sort families"
 		#print family
@@ -50,9 +53,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	#			seqs_sorted.append(seq)
 
 		#combine into one larger list 
-		for fam in family:
+		for fam in family1:
 			#print fam
-			for seq in seqs:
+			for seq in seqs1:
 				print seq
 				if (fam[4] == seq[0]):
 					everything.append([seq[0], seq[1], fam[1], seq[2], seq[4], fam[5]])

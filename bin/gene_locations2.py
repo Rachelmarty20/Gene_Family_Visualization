@@ -375,6 +375,15 @@ def get_seqs(gene):
 						print "Node_num: " + str(node_num)					
 					except:
 						print "fail1"
+					print "name: " + str(i[0])
+					try:
+						print "tracker: " + str(tracker[i[0]])
+					except:
+						print "coudlnt print tracker"
+					try:
+						print "Node_num: " + str(node_num)	
+					except:
+						print "couldn't print node num"	
 					try:
 						link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
 					except:
