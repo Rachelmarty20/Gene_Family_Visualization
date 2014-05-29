@@ -57,13 +57,13 @@ body {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   d3.csv("../data/genes_nuc.csv", function(error, data) {
-    var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "ProteinLocation"; });
+    var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "GeneLocation"; });
 
     data.forEach(function(d) {
       d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
     });
 
-    x0.domain(data.map(function(d) { return d.ProteinLocation; }));
+    x0.domain(data.map(function(d) { return d.GeneLocation; }));
     x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
     y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
 
@@ -82,13 +82,13 @@ body {
         .style("text-anchor", "end")
         .text("Alignment Score");
 
-    var ProteinLocation = svg.selectAll(".ProteinLocation")
+    var GeneLocation = svg.selectAll(".GeneLocation")
         .data(data)
       .enter().append("g")
         .attr("class", "g")
-        .attr("transform", function(d) { return "translate(" + x0(d.ProteinLocation) + ",0)"; });
+        .attr("transform", function(d) { return "translate(" + x0(d.GeneLocation) + ",0)"; });
 
-    ProteinLocation.selectAll("rect")
+    GeneLocation.selectAll("rect")
         .data(function(d) { return d.ages; })
       .enter().append("rect")
         .attr("width", x1.rangeBand())

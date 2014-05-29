@@ -62,10 +62,14 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		print len(everything)
 		#create header list and insert into csv
 		header_list = []
-		header_list.append("ProteinLocation")
+		header_list_b = []
+		header_list.append("GeneLocation")
+		header_list_b.append("GeneLocation")
 		for ever in everything:
 			header_list.append(str(ever[0]) + "-" + str(ever[2]))
+			header_list_b.append(str(ever[0]) + "-" + str(ever[2]))
 		wr.writerow(header_list)
+		wr_b.writerow(header_list_b)
 
 		maxim = 0
 		maxim_b = 0 
