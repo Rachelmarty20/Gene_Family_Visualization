@@ -185,7 +185,7 @@ def unique_items(L):
 #	except:
 #		print "couldn't append"
 
-bar(gene, chrom, chr_start, nuc_main, aa_main, family, seqs)
+#bar(gene, chrom, chr_start, nuc_main, aa_main, family, seqs)
 
 
 
