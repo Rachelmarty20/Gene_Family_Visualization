@@ -20,8 +20,10 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		#seqs.append([name, chr, store_nuc, nuc_score, store_aa, aa_score])
 		family1 = []
 		seqs1 = []
-		family1 = family
-		seqs1 = seqs
+		for fam in family:
+			family1.append(fam)
+		for seq in seqs:
+			seq1.append(seq)
 		#remove all genes in family and seqs that are on a different chromosome
 		for fam in family1:
 			if(fam[0] != chr_main):
