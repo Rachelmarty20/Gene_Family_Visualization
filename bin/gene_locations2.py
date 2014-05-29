@@ -156,7 +156,7 @@ def get_seqs(gene):
 
 		#get sequences of main gene, need to change select statement!!!!!!!!!!!!!!!!!!
 		sql_seq = "SELECT nuc_seq, aa_seq FROM " + name_main + ";"
-		print sql_seq
+		#print sql_seq
 		try:
 		   	# Execute the SQL command
 			cursor.execute(sql_seq)
@@ -169,9 +169,9 @@ def get_seqs(gene):
 		   return
 		for row in results:
 			nuc_main = str(row[0])
-			print nuc_main
+			#print nuc_main
 			aa_main = str(row[1])
-			print aa_main
+			#print aa_main
 
 		#print chr_main
 		#print start_main
@@ -281,7 +281,7 @@ def get_seqs(gene):
 			#equation to determine distance metric of 
 			family.append([chr_sib, start_sib, chr_same, chr_dist, name, summary])
 
-		print family
+		#print family
 		
 
 		seqs = []
@@ -323,16 +323,16 @@ def get_seqs(gene):
 					#print "successfully added"
 				except:
 					print "couldn't append to seq"
-		print gene
-		print chr_main
-		print start_main
-		print nuc_main
-		print aa_main			
+		#print gene
+		#print chr_main
+		#print start_main
+		#print nuc_main
+		#print aa_main			
 		try:
 			              #bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
 		except:
-			print " "
+			print "didn't enter create bar"
 
 		#print seqs
 		try:
@@ -363,7 +363,7 @@ def get_seqs(gene):
 				#create individual dictionaries for each link
 				link.append({'source':0, 'target':(counter), 'value':(3)})
 
-			print link
+			#print link
 			node_num = len(node)
 			try:
 				#create loop for seq; maybe two for nuc and aa

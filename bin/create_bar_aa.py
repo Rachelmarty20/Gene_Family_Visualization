@@ -31,7 +31,8 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 
 		#sort by starting location of start_sib
 		family.sort(key=lambda x: x[1])
-
+	except:
+		print "couldn't sort families"
 		#print family
 
 		#create a list of gene names to keep
@@ -40,6 +41,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	#		seqs_lib.append(seq[0])
 
 	#	seqs_sorted = []
+	try:
 		everything = []
 		#another attempt to get all seqs in seqs_sorted without messing up order
 	#	for seq in seqs:
@@ -68,14 +70,19 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		for ever in everything:
 			header_list.append(str(ever[0]) + "-" + str(ever[2]))
 			header_list_b.append(str(ever[0]) + "-" + str(ever[2]))
+		print header_list
+		print header_list_b
 		wr.writerow(header_list)
 		wr_b.writerow(header_list_b)
+	except:
+		print "coudn't make family and write first line"
 
+	try:
 		maxim = 0
 		maxim_b = 0 
 		matrix = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
 		matrix_b = [[0 for i in range(len(everything)+1)] for j in range(len(everything))]
-		print matrix
+		#print matrix
 		counter_ever = 0
 		#counter_i = 0
 		dist = 0
@@ -105,7 +112,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 				print counter_i
 			counter_ever = counter_ever + 1
 			print counter_ever
-
+	except:
+		print "couldn't fill matrices"
+	try:
 		counter_ever = 0
 		for ever in everything:
 			counter_i = 0
@@ -116,7 +125,10 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 					matrix_b[counter_i][counter_ever+1], matrix_b[counter_ever][counter_i+1] = maxim_b, maxim_b
 				counter_i = counter_i + 1
 			counter_ever = counter_ever + 1
+	except:
+		print "couldn't change 0s"
 
+	try:
 		print matrix
 		print matrix_b	
 		count = 0	
@@ -125,9 +137,9 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 			wr.writerow(dist_list)
 			count = count + 1
 
-		for dist_list in matrix_b:
-			print dist_list
-			wr_b.writerow(dist_list)
+		for dist_list_b in matrix_b:
+			print dist_list_b
+			wr_b.writerow(dist_list_b)
 			count = count + 1
 	except:
 		"The bar visualizations could not be completed."	

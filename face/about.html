@@ -15,18 +15,41 @@
     <script src="../vendor/D3.v3.js" charset="utf-8"></script>
     
     <script src="../js/run_scripts.js"></script>
-    <!--script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
       #footer {
-         position:absolute;
-         bottom:0;
-         width:100%;
-         height:60px;   /* Height of the footer */
-         background:#6cf;
+        height: 60px;
       }
-      #container {
-         height:100%;
+      #footer {
+        background-color: #f5f5f5;
       }
-    </script-->
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+    </style>
     <title>Genolution</title>
     <!--create vendors file-->
   </head>
@@ -45,11 +68,12 @@
 
 
 
-
-
       <div id="footer">
-        <p>&copy; Rachel Marty 2014</p>
+        <div class="container">
+          <p class="muted credit">&copy; Rachel Marty 2014</p>
+        </div>
       </div>
+
 
     </div> <!-- /container -->
 
