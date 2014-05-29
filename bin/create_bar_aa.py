@@ -25,12 +25,12 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		print "family length: " + str(len(family))
 		print "seqs length: " + str(len(seqs))
 		for fam in family:
-			print str(fam)
-			print str(type(fam))
-			#family1.append(fam)
+			#print str(fam)
+			#print str(type(fam))
+			family1.append(fam)
 		for seq in seqs:
-			print str(seq)
-			#seq1.append(seq)
+			#print str(seq)
+			seq1.append(seq)
 	except:
 		print "switching lists"
 	try:
@@ -170,11 +170,11 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	try:
 		bar = ''
 		bar_aa = ''
-		f = open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv')
-		f_aa = open('/var/www/html/Gene_Family_Visualization/data/genes.csv')	
-		bar = f.read()
+		with open('/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv', 'r') as f:
+			bar = f.read()
+		with open('/var/www/html/Gene_Family_Visualization/data/genes.csv', 'r') as f:
+			bar_aa = f.read()	
 		print bar
-		bar_aa = f_aa.read()
 		print bar_aa
 	except:
 		print "couldn't read files as strings"
