@@ -51,7 +51,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 
 		#combine into one larger list 
 		for fam in family:
-			print fam
+			#print fam
 			for seq in seqs:
 				print seq
 				if (fam[4] == seq[0]):

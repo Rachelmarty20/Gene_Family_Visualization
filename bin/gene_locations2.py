@@ -328,11 +328,10 @@ def get_seqs(gene):
 		#print start_main
 		#print nuc_main
 		#print aa_main			
-		try:
-			              #bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
-			bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
-		except:
-			print "didn't enter create bar"
+		#try:
+		#	bar, bar_aa = create_bar_aa.bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs)
+		#except:
+		#	print "didn't enter create bar"
 
 		#print seqs
 		try:
