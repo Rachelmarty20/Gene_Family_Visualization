@@ -87,14 +87,14 @@ def get_seqs(gene):
 			print output
 			output = str(output)
 			print "string: " + str(output)
-			output = output[1:-1]
+			output_bar = output[1:-1]
 			#output = output.replace("'", '"')
 			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
 		#json.dump(output, f)
-		f_bar.write(output)
+		f_bar.write(output_bar)
 
 		#create aa bar
 		sql_fetch = "SELECT bar_aa FROM existing WHERE gene = " + "'" + gene + "'" + ";"
@@ -105,7 +105,7 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
-			output = str(output)
+			output_bar_aa = str(output)
 			#output = output[2:-3]
 			#output = output.replace("'", '"')
 			#print output
@@ -113,7 +113,7 @@ def get_seqs(gene):
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
 		#json.dump(output, f)
-		f_bar_aa.write(output)
+		f_bar_aa.write(output_bar_aa)
 
 	else:
 		#sizes of all of the chromosomes
