@@ -25,22 +25,24 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 		print "family length: " + str(len(family))
 		print "seqs length: " + str(len(seqs))
 		for fam in family:
-			family1.append(fam)
+			if(fam[2] == 1):
+				family1.append(fam)
 		for seq in seqs:
-			seqs1.append(seq)
+			if(seq[1] == chr_main):
+				seqs1.append(seq)
 	except:
 		print "switching lists"
 	try:
 		print "family1 length: " + str(len(family1))
 		print "seqs1 length: " + str(len(seqs1))
 		#remove all genes in family and seqs that are on a different chromosome
-		for fam in family1:
-			if(fam[0] != chr_main):
-				family1.remove(fam)
+		#for fam in family1:
+		#	if(fam[2] != 1):
+		#		family1.remove(fam)
 
-		for seq in seqs1:
-			if(seq[1] != chr_main):
-				seqs1.remove(seq)
+		#for seq in seqs1:
+		#	if(seq[1] != chr_main):
+		#		seqs1.remove(seq)
 
 		#print family
 
