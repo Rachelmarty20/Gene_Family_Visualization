@@ -88,9 +88,9 @@ def get_seqs(gene):
 			print output
 			output = str(output)
 			print "string: " + str(output)
-			output_bar = output[2:-2]
+			output_bar = output[2:-3]
 			print output_bar
-			output_bar = output_bar.splitlines()
+			output_bar = output_bar.splitlines("\r\n")
 			print output_bar
 			#print output
 		except:
