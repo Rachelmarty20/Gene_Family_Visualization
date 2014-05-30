@@ -89,7 +89,7 @@ def get_seqs(gene):
 			output_bar = output[2:-3]
 			print output_bar
 			#turn string into list, separted by \r\n
-			output_bar = output_bar.replace(r"\r\n", ",")
+			output_bar = output_bar.replace(r"\r\n", "\n")
 			print output_bar
 			#print output
 		except:
