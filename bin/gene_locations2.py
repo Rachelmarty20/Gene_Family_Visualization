@@ -87,10 +87,10 @@ def get_seqs(gene):
 			output = results[0]
 			output = str(output)
 			output_bar = output[2:-3]
-			print output_bar
+			#print output_bar
 			#turn string into list, separted by \r\n
 			output_bar = output_bar.replace(r"\r\n", "\n")
-			print output_bar
+			#print output_bar
 			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
@@ -109,6 +109,7 @@ def get_seqs(gene):
 			output = results[0]
 			output = str(output)
 			output_bar_aa = output[2:-3]
+			output_bar_aa = output_bar_aa.replace(r"\r\n", "\n")
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
