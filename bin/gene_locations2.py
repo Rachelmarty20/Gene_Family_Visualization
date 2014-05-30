@@ -20,7 +20,7 @@ import create_bar_aa
 
 form = cgi.FieldStorage()
 #mygene = form.getvalue("mygene")
-mygene = "APOL3"
+mygene = "CDH11"
 #print mygene
 #print 'hello'
 
@@ -53,6 +53,7 @@ def get_seqs(gene):
 	#if to check if gene has already been searched
 
 	if gene in searched_genes:
+		#create network
 		sql_fetch = "SELECT object FROM existing WHERE gene = " + "'" + gene + "'" + ";"
 		#print sql_fetch
 		try:
@@ -70,6 +71,45 @@ def get_seqs(gene):
 		  return
 		#json.dump(output, f)
 		f.write(output)
+
+		#create nuc bar
+		sql_fetch = "SELECT bar FROM existing WHERE gene = " + "'" + gene + "'" + ";"
+		#print sql_fetch
+		try:
+		   	# Execute the SQL command
+			cursor.execute(sql_fetch)
+			# Fetch all the rows in a list
+			results = cursor.fetchall()
+			output = results[0]
+			output = str(output)
+			output = output[2:-3]
+			output = output.replace("'", '"')
+			#print output
+		except:
+		  print "This gene provides too much data for a helpful visualization. Please try another gene."
+		  return
+		#json.dump(output, f)
+		f.write(output)
+
+		#create aa bar
+		sql_fetch = "SELECT bar_aa FROM existing WHERE gene = " + "'" + gene + "'" + ";"
+		#print sql_fetch
+		try:
+		   	# Execute the SQL command
+			cursor.execute(sql_fetch)
+			# Fetch all the rows in a list
+			results = cursor.fetchall()
+			output = results[0]
+			output = str(output)
+			output = output[2:-3]
+			output = output.replace("'", '"')
+			#print output
+		except:
+		  print "This gene provides too much data for a helpful visualization. Please try another gene."
+		  return
+		#json.dump(output, f)
+		f.write(output)
+
 	else:
 		#sizes of all of the chromosomes
 		chr1 = 249250621
