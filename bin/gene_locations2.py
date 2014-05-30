@@ -19,8 +19,8 @@ import create_bar_aa
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-#mygene = form.getvalue("mygene")
-mygene = "XPO4"
+mygene = form.getvalue("mygene")
+#mygene = "XPO4"
 #print mygene
 #print 'hello'
 
