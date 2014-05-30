@@ -85,12 +85,12 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
-			print output
+			#print output
 			output = str(output)
-			print "string: " + str(output)
+			#print "string: " + str(output)
 			output_bar = output[2:-3]
 			print output_bar
-			output_bar = output_bar.splitlines("\r\n")
+			output_bar = output_bar.replace("\r\n", ",")
 			print output_bar
 			#print output
 		except:
