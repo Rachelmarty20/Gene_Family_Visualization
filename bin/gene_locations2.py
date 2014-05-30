@@ -13,6 +13,7 @@ import json
 from Bio.SubsMat import MatrixInfo as matlist
 import local_alignment
 import create_bar_aa
+import csv
 
 
 #add error statements that print to main page if error occurs; also a success statement
@@ -87,8 +88,10 @@ def get_seqs(gene):
 			print output
 			output = str(output)
 			print "string: " + str(output)
-			output_bar = output[1:-1]
-			#output = output.replace("'", '"')
+			output_bar = output[2:-2]
+			print output_bar
+			output_bar = output_bar.splitlines()
+			print output_bar
 			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
