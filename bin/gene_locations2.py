@@ -85,13 +85,11 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
-			#print output
 			output = str(output)
-			#print "string: " + str(output)
 			output_bar = output[2:-3]
 			print output_bar
 			#turn string into list, separted by \r\n
-			output_bar = output_bar.replace("\r\n", ",")
+			output_bar = output_bar.replace(r"\r\n", ",")
 			print output_bar
 			#print output
 		except:
@@ -109,10 +107,8 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
-			output_bar_aa = str(output)
-			#output = output[2:-3]
-			#output = output.replace("'", '"')
-			#print output
+			output = str(output)
+			output_bar_aa = output[2:-3]
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
