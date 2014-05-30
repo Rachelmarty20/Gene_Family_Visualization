@@ -20,8 +20,8 @@ import csv
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-#mygene = form.getvalue("mygene")
-mygene = "TUBB1"
+mygene = form.getvalue("mygene")
+#mygene = "TUBB1"
 #print mygene
 #print 'hello'
 
@@ -35,8 +35,8 @@ def get_seqs(gene):
 
 	try:
 		f = open("/var/www/html/Gene_Family_Visualization/data/flare.json", "w")
-		f_bar = open("/var/www/html/Gene_Family_Visualization/data/bar.json", "w")
-		f_bar_aa = open("/var/www/html/Gene_Family_Visualization/data/bar_aa.json", "w")
+		f_bar = open("/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv", "w")
+		f_bar_aa = open("/var/www/html/Gene_Family_Visualization/data/genes.csv", "w")
 
 	except:
 		print "couldn't open"
@@ -90,6 +90,7 @@ def get_seqs(gene):
 			#print "string: " + str(output)
 			output_bar = output[2:-3]
 			print output_bar
+			#turn string into list, separted by \r\n
 			output_bar = output_bar.replace("\r\n", ",")
 			print output_bar
 			#print output
