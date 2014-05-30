@@ -34,6 +34,9 @@ def get_seqs(gene):
 
 	try:
 		f = open("/var/www/html/Gene_Family_Visualization/data/flare.json", "w")
+		f_bar = open("/var/www/html/Gene_Family_Visualization/data/bar.json", "w")
+		f_bar_aa = open("/var/www/html/Gene_Family_Visualization/data/bar_aa.json", "w")
+
 	except:
 		print "couldn't open"
 
@@ -81,15 +84,17 @@ def get_seqs(gene):
 			# Fetch all the rows in a list
 			results = cursor.fetchall()
 			output = results[0]
+			print output
 			output = str(output)
-			output = output[2:-3]
-			output = output.replace("'", '"')
+			print "string: " + str(output)
+			output = output[1:-1]
+			#output = output.replace("'", '"')
 			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
 		#json.dump(output, f)
-		f.write(output)
+		f_bar.write(output)
 
 		#create aa bar
 		sql_fetch = "SELECT bar_aa FROM existing WHERE gene = " + "'" + gene + "'" + ";"
@@ -101,14 +106,14 @@ def get_seqs(gene):
 			results = cursor.fetchall()
 			output = results[0]
 			output = str(output)
-			output = output[2:-3]
-			output = output.replace("'", '"')
+			#output = output[2:-3]
+			#output = output.replace("'", '"')
 			#print output
 		except:
 		  print "This gene provides too much data for a helpful visualization. Please try another gene."
 		  return
 		#json.dump(output, f)
-		f.write(output)
+		f_bar_aa.write(output)
 
 	else:
 		#sizes of all of the chromosomes

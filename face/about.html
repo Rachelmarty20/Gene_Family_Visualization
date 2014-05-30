@@ -18,40 +18,27 @@
     <style>
        /* Sticky footer styles
       -------------------------------------------------- */
-
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
+      html,body{
+          height: 100%
       }
 
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
+      #holder{
+          min-height: 100%;
+          position:relative;
       }
 
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
+      #body{
+          padding-bottom: 100px;    /* height of footer */
       }
 
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
+      footer{
+          height: 100px; 
+          width:100%;
+          position: absolute;
+          left: 0;
+          bottom: 0; 
       }
+     
       p {text-indent:50px;}
     </style>
     <title>Genolution</title>
@@ -59,7 +46,7 @@
   </head>
 
   <body>
-
+    <div id="holder">
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
@@ -69,7 +56,7 @@
         </ul>
         <h3 class="text-muted">Genolution</h3>
       </div>
-
+      <div id="body">
       <div class="container">
         <h3>Purpose of Genolution</h3>
         <p>Genolution is a tool created to provide several visualizations about a gene family in order to help the user explore the relationship between location of the genes on the genome and the simiarlity of the gene products. Listed below are available visualizations and suggestions about how to use them in understanding evolutionary patterns. This tool was created by Rachel Marty, a bioinformatics undergraduate student at UCSD, during spring of 2014. </p>
@@ -93,7 +80,7 @@
         <p></p>
 
       </div>  
-
+    </div>
       <div id="footer">
         <div class="container">
           <p class="muted credit">&copy; Rachel Marty 2014</p>
@@ -102,8 +89,7 @@
 
 
     </div> <!-- /container -->
-
-
+  </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
