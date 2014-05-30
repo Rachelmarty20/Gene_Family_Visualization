@@ -20,7 +20,7 @@ import create_bar_aa
 
 form = cgi.FieldStorage()
 #mygene = form.getvalue("mygene")
-mygene = "CDH11"
+mygene = "WNT5A"
 #print mygene
 #print 'hello'
 
