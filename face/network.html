@@ -126,16 +126,10 @@
             
 */
       vis.selectAll("path")
-          .data(nodes)
+          .data(data)
         .enter().append("path")
-          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-          .attr("d", d3.svg.symbol()
-            .size(function(d) { return d.size; })
-            .type(function(d) { return d.level; }))
-          //.style("fill", "steelblue")
-          //.style("stroke", "white")
-          //.style("stroke-width", "1.5px")
-          .call(force.drag);
+          .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; })
+          .attr("d", d3.svg.symbol());
 
       //getting a title for nodes? maybe used for tooltips?
       node.append("title")
