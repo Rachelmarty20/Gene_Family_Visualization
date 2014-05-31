@@ -61,9 +61,6 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	try:
 		everything = []
 		#another attempt to get all seqs in seqs_sorted without messing up order
-	#	for seq in seqs:
-	#		if seq[0] in seqs_lib:
-	#			seqs_sorted.append(seq)
 
 		#combine into one larger list 
 		for fam in family1:
