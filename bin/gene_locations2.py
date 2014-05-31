@@ -20,8 +20,8 @@ import csv
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-mygene = form.getvalue("mygene")
-#mygene = "TUBB1"
+#mygene = form.getvalue("mygene")
+mygene = "APOL1"
 #print mygene
 #print 'hello'
 
@@ -408,7 +408,7 @@ def get_seqs(gene):
 			for i in family:
 				counter = counter + 1
 				#create individual dictionaries for each link
-				link.append({'source':0, 'target':(counter), 'value':(3)})
+				link.append({'source':0, 'target':(counter), 'value':(1)})
 
 			#print link
 			node_num = len(node)
@@ -432,7 +432,7 @@ def get_seqs(gene):
 					except:
 						print "couldn't print node num"	
 					try:
-						link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(3)})
+						link.append({'source':tracker[i[0]], 'target':(node_num), 'value':(5)})
 					except:
 						print "fail2"
 					try:
@@ -440,7 +440,7 @@ def get_seqs(gene):
 					except:
 						print "fail3"
 					try:
-						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(3)})
+						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(10)})
 					except:
 						print "fail4"
 					#must change back to 2
