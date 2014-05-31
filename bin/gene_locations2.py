@@ -440,7 +440,7 @@ def get_seqs(gene):
 					except:
 						print "fail3"
 					try:
-						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(10)})
+						link.append({'source':(node_num), 'target':(node_num + 1), 'value':(15)})
 					except:
 						print "fail4"
 					#must change back to 2
