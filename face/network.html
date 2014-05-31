@@ -100,8 +100,8 @@
           .attr("class", "link")
           //where does d.value come from?
           .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-/*
-      //formatting the links
+
+      //formatting the nodes
       var node = svg.selectAll(".node")
           .data(graph.nodes)
         //use this to create different options for 
@@ -111,7 +111,7 @@
           .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; })
           .style("fill", function(d) { return color(d.chromosome); })
           .call(force.drag);
-*/
+/*
 
       var node = svg.selectAll(".node")
         .data(data.nodes)
@@ -124,7 +124,7 @@
         .style("fill", function(d) { return color(d.chromosome); })
         .call(force.drag);
             
-
+*/
       //getting a title for nodes? maybe used for tooltips?
       node.append("title")
         .text(function(d) { return d.name; });
@@ -136,16 +136,16 @@
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-/*
+
       //maybe sizing of the nodes?
       node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
-*/
+/*
       
       node.attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
       });
-
+*/
       });
     });
 
