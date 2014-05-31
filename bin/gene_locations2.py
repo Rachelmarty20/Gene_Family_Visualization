@@ -391,11 +391,11 @@ def get_seqs(gene):
 			#create node list of dictionary
 			node = []
 			#first, make the initial zero node, all will be attached to it
-			node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main)})
+			node.append({'name':name_main, 'size':10000, 'chromosome':(chr_main), 'level':0})
 			#start by making all of the inital distance nodes
 			for i in family:
 				#create individual dictionaries for each node
-				node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0])})
+				node.append({'name':i[4], 'size':(i[3]*10), 'chromosome':(i[0]), 'level':0})
 				#create a dictionary to keep name and node number!
 				tracker[i[4]] = count
 				count = count + 1
@@ -417,7 +417,7 @@ def get_seqs(gene):
 				for i in seqs:
 					#keep a counter to know numbers of these nodes to link them
 					try:
-						node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1]})
+						node.append({'name':(i[0] + " transcript"), 'size':(i[3]*300), 'chromosome':i[1], 'level': 1})
 						print "tracker: " + str(tracker[i[0]])
 						print "Node_num: " + str(node_num)					
 					except:
@@ -436,7 +436,7 @@ def get_seqs(gene):
 					except:
 						print "fail2"
 					try:
-						node.append({'name':(i[0] + "protein"), 'size':(i[5]*300), 'chromosome':i[1]})
+						node.append({'name':(i[0] + "protein"), 'size':(i[5]*300), 'chromosome':i[1], 'level':1})
 					except:
 						print "fail3"
 					try:
