@@ -21,7 +21,7 @@ import csv
 
 form = cgi.FieldStorage()
 #mygene = form.getvalue("mygene")
-mygene = "APOL1"
+mygene = "APOL3"
 #print mygene
 #print 'hello'
 
