@@ -127,26 +127,31 @@
       node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
 
+      tooltip.html(d)  
+        .style("left", d3.select(this).attr("cx") + "px")     
+        .style("top", d3.select(this).attr("cy") + "px");
+
       });
     });
 
     </script>
-   
-    <p>Chosen Gene     Genomic Proximity   Transcript comparison    Protein Comparison </p>
-    <svg height="100" width="1000">
-      <circle cx="10" cy="50" r="10" fill="black" />
-      <line x1="10" y1="50" x2="50" y2="50" style="stroke: #999;stroke-opacity: .6;stroke-width:1" />
-      <circle cx="50" cy="50" r="5" fill="black" />
-      <line x1="50" y1="50" x2="100" y2="50" style="stroke: #999;stroke-opacity: .6; stroke-width:5" />
-      <circle cx="100" cy="50" r="12" fill="black" />
-      <line x1="100" y1="50" x2="150" y2="50" style="stroke: #999;stroke-opacity: .6; stroke-width:15" />
-      <circle cx="150" cy="50" r="6" fill="black" />
-    </svg>
-
-    <p>Look at other visualizations of the same gene to gain more insight.</p>
+      <p>Look at other visualizations of the same gene to gain more insight.</p>
         <p>
           <a class="btn btn-lg btn-primary" href="./bar.html" role="button">Transcript Bar Visualization</a>
           <a class="btn btn-lg btn-primary" href="./bar_aa.html" role="button">Protein Bar Visualization</a>
         </p>
+
+    <p>Chosen Gene &nbsp;&nbsp;&nbsp;&nbsp; Genomic Proximity &nbsp;&nbsp;&nbsp;&nbsp;  Transcript comparison   &nbsp;&nbsp;&nbsp;&nbsp; Protein Comparison </p>
+    <svg height="50" width="1000">
+      <line x1="10" y1="50" x2="50" y2="200" style="stroke: #999;stroke-opacity: .6;stroke-width:1"/>
+      <line x1="50" y1="200" x2="100" y2="350" style="stroke: #999;stroke-opacity: .6; stroke-width:3"/>
+      <line x1="100" y1="350" x2="150" y2="500" style="stroke: #999;stroke-opacity: .6; stroke-width:5"/>
+      <circle cx="50" cy="25" r="10" fill="black"/>
+      <circle cx="200" cy="25" r="5" fill="black"/>
+      <circle cx="350" cy="25" r="12" fill="black"/>
+      <circle cx="500" cy="25" r="6" fill="black"/>
+    </svg>
+
+    
   </container>
   </body>
