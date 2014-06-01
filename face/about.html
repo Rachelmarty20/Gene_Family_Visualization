@@ -46,47 +46,53 @@
   </head>
 
   <body>
-    <div id="holder">
     <div class="container">
-      <header>
+      <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="./index.html">Home</a></li>
           <li><a href="./about.html">About</a></li>
           <li><a href="./contact.html">Contact</a></li>
         </ul>
-      </header>
         <h3 class="text-muted">Genolution</h3>
       </div>
       <div id="body">
       <div class="container">
-        <h3>Purpose of Genolution</h3>
+        <h4>Purpose of Genolution</h4>
         <p>Genolution is a tool created to provide several visualizations about a gene family in order to help the user explore the relationship between location of the genes on the genome and the simiarlity of the gene products. Listed below are available visualizations and suggestions about how to use them in understanding evolutionary patterns. This tool was created by Rachel Marty, a bioinformatics undergraduate student at UCSD, during spring of 2014. </p>
         
-        <h3>Types of Visualizations</h3>
+        <h4>Types of Visualizations</h4>
         
-        <h4>Network Visualization</h4>
+        <h5>Network Visualization</h5>
+        <div id="container">
+         <p>Chosen Gene &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Genomic Proximity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Transcript comparison   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Protein Comparison </p>
+        <p> &nbsp;&nbsp;&nbsp;(Middle) &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; to chosen gene &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  with chosen gene  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with chosen gene </p>
+        <svg height="50" width="1000">
+          <line x1="100" y1="25" x2="250" y2="25" style="stroke:#999;stroke-opacity:.6;stroke-width:1"/>
+          <line x1="250" y1="25" x2="400" y2="25" style="stroke:#999;stroke-opacity:.6; stroke-width:3"/>
+          <line x1="400" y1="25" x2="550" y2="25" style="stroke:#999;stroke-opacity:.6; stroke-width:5"/>
+          <circle cx="100" cy="25" r="10" fill="black"/>
+          <circle cx="250" cy="25" r="5" fill="black"/>
+          <circle cx="400" cy="25" r="12" fill="black"/>
+          <circle cx="550" cy="25" r="6" fill="black"/>
+        </svg>
         <p>This visualization gives a broad overview of how the genes in the searched gene's family interact with the searched gene. The network is centered around the searched gene.</p>
         <p>The nodes connected to the center node are the other genes in the gene family. Their color represents their chromosome and their size represents their proximity to the searched gene. Mousing over the nodes will display the name of the gene that they represent.</p>
         <p>The next wave of nodes represents the transcript products from that gene. Once again, the color represents the chromosome. However, now the size of the node represents the alignment score with a transcript from the chosen gene. Finally, the last wave of nodes represents the protien products of the genes. The attributes of these are the same as the second wave.</p>
         <p>This visualization can give insight about general evolutionary patterns and timeline. For example, all of the transcripts and proteins that are larger are likely to be closer evolutionarily. Comparing these observations to the synteny of the family can provide hypothesises about mechanism. Also, psuedogenes are displayed without transcripts or proteins.</p>
-        
-        <h4>Network Visualization</h4>
-        <p>This visualization narrows on the </p>
+        </div>
+        <h5>Network Visualization</h5>
+        <p>This visualization narrows the comparisons to only transcripts on the same chromosome. Thus, a more detailed graph is achieved. The y-axis denotes sequence similarity between the designated gene on the x-axis and all of the other transcripts from other genes. </p>
         <p></p>
         <p></p>
         
-        <h4>Network Visualization</h4>
-        <p> </p>
+        <h5>Network Visualization</h5>
+        <p>This visualization narrows the comparisons to only proteins on the same chromosome. Thus, a more detailed graph is achieved. The y-axis denotes sequence similarity between the designated gene on the x-axis and all of the other proteins from other genes. </p>
         <p></p>
         <p></p>
 
       </div>  
     </div>
-      <footer>
-        <div class="container">
-          <p class="muted credit">&copy; Rachel Marty 2014</p>
-        </div>
-      </footer>
+    
 
 
     </div> <!-- /container -->
