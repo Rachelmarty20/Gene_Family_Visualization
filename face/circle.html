@@ -23,6 +23,10 @@
     <!-- Custom styles for this template -->
     <!--link href="../vendor/jumbotron-narrow.css" rel="stylesheet"-->
     <script src="../vendor/D3.v3.js" charset="utf-8"></script>
+    <!--script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.1.3"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.geom.js?2.1.3"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.layout.js?2.1.3"></script-->
+    <style type="text/css">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,176 +40,114 @@
     <style>
 
       .node {
-        cursor: pointer;
-        stroke: #3182bd;
+        stroke: #fff;
         stroke-width: 1.5px;
       }
+      .node:not(:hover) .nodetext {
+        display: none;
+      }
+
 
       .link {
-        fill: none;
-        stroke: #9ecae1;
-        stroke-width: 1.5px;
+        stroke: #999;
+        stroke-opacity: .6;
       }
 
     </style>
-  </head
+  </head>
   <body>
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="./index.html">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./contact.html">Contact</a></li>
         </ul>
         <h3 class="text-muted">Genolution</h3>
       </div>  
     <script src="../vendor/D3.v3.js"></script>
     <script>
+      //size  of the image
       var width = 960,
-          height = 500,
-          root;
+          height = 700;
 
+      //color scheme?
+      var color = d3.scale.category20()
+
+      //characteristics of force plot
       var force = d3.layout.force()
-          .size([width, height])
-          .on("tick", tick);
+          .charge(-120)
+          //can I change distance depending on other things? see .size
+          .linkDistance(30)
+          .size([width, height]);
 
+      //make svg container
       var svg = d3.select("body").append("svg")
           .attr("width", width)
           .attr("height", height);
 
-      var link = svg.selectAll(".link"),
-          node = svg.selectAll(".node");
-
-      var formatTime = d3.time.format("%e %B");
-
-      var div = d3.select("body").append("div")   
-          .attr("class", "tooltip")               
-          .style("opacity", 0);
-
-      d3.json("../data/flare.json", function(json) {
-        root = json;
-        update();
-      });
-
-      function update() {
-        var nodes = flatten(root),
-            links = d3.layout.tree().links(nodes);
-
-        // Restart the force layout.
+      //take in the data
+      d3.json("../data/storage.json", function(error, graph) {
         force
-            .nodes(nodes)
-            .links(links)
+            .nodes(graph.nodes)
+            .links(graph.links)
             .start();
 
-        // Update the links…
-        link = link.data(links, function(d) { return d.target.id; });
+      //formatting the links
+      var link = svg.selectAll(".link")
+          .data(graph.links)
+        .enter().append("line")
+          .attr("class", "link")
+          //where does d.value come from?
+          .style("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-        // Exit any old links.
-        link.exit().remove();
+      //formatting the nodes
+      var node = svg.selectAll(".node")
+          .data(graph.nodes)
+        //use this to create different options for 
+        .enter().append("circle")
+          .attr("class", "node")
+          //.attr("r", 5)
+          .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; })
+          .style("fill", function(d) { return color(d.chromosome); })
+          .call(force.drag);
 
-        // Enter any new links.
-        link.enter().insert("line", ".node")
-            .attr("class", "link")
-            .attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
+      //getting a title for nodes? maybe used for tooltips?
+      node.append("title")
+        .text(function(d) { return d.name; });
 
-        // Update the nodes…
-        node = node.data(nodes, function(d) { return d.id; }).style("fill", color);
-
-        // Exit any old nodes.
-        node.exit().remove();
-
-        // Enter any new nodes.
-        node.enter().append("circle")
-            .attr("class", "node")
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; })
-            .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; })
-            .style("fill", color)
-            .on("click", click)
-            .call(force.drag);
-            /*
-            .on("mouseover", function(d) {      
-                div.transition()        
-                    .duration(200)      
-                    .style("opacity", .9);      
-                div .html(formatTime(d.date) + "<br/>"  + d.close)  
-                    .style("left", (d3.event.pageX) + "px")     
-                    .style("top", (d3.event.pageY - 28) + "px");    
-                })                  
-            .on("mouseout", function(d) {       
-                div.transition()        
-                    .duration(500)      
-                    .style("opacity", 0); 
-            */  
-      }
-
-      function tick() {
+      //creating force
+      force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
-        node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-      }
+      //maybe sizing of the nodes?
+      node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
 
-      // Color leaf nodes orange, and packages white or blue.
-      function color(d) {
-        return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
-      }
-
-      // Toggle children on click.
-      function click(d) {
-        if (!d3.event.defaultPrevented) {
-          if (d.children) {
-            d._children = d.children;
-            d.children = null;
-          } else {
-            d.children = d._children;
-            d._children = null;
-          }
-          update();
-        }
-      }
-
-      // Returns a list of all nodes under the root.
-      function flatten(root) {
-        var nodes = [], i = 0;
-
-        function recurse(node) {
-          if (node.children) node.children.forEach(recurse);
-          if (!node.id) node.id = ++i;
-          nodes.push(node);
-        }
-
-        recurse(root);
-        return nodes;
-      }
-        
-      //adding tooltips
-      var jqtt = $(".node").tooltip({ track: false, 
-        content: function () {
-          var title = $(this).attr("title");
-          return title;
-        }, 
-        show: { duration: 0 }, hide: { duration: 0 } });
+      });
+    });
 
     </script>
-    <style type="text/css">
-      div.tooltip {   
-        position: absolute;           
-        text-align: center;           
-        width: 60px;                  
-        height: 28px;                 
-        padding: 2px;             
-        font: 12px sans-serif;        
-        background: lightsteelblue;   
-        border: 0px;      
-        border-radius: 8px;           
-        pointer-events: none;         
-      }
-    </style>
+     
+    <h4>Network Visualization</h4>
+      <p> The colors represent different chromosomes. Snyteny and simiarity are displayed as follows: </p>
+      <br>
+
+    <p>Chosen Gene &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Genomic Proximity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Transcript comparison   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Protein Comparison </p>
+    <p> &nbsp;&nbsp;&nbsp;(Middle) &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; from chosen gene &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  with chosen gene  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with chosen gene </p>
+    <svg height="50" width="1000">
+      <line x1="50" y1="25" x2="200" y2="25" style="stroke:#999;stroke-opacity:.6;stroke-width:1"/>
+      <line x1="200" y1="25" x2="350" y2="25" style="stroke:#999;stroke-opacity:.6; stroke-width:3"/>
+      <line x1="350" y1="25" x2="500" y2="25" style="stroke:#999;stroke-opacity:.6; stroke-width:5"/>
+      <circle cx="50" cy="25" r="10" fill="black"/>
+      <circle cx="200" cy="25" r="5" fill="black"/>
+      <circle cx="350" cy="25" r="12" fill="black"/>
+      <circle cx="500" cy="25" r="6" fill="black"/>
+    </svg>
+
+    
+  </container>
   </body>
