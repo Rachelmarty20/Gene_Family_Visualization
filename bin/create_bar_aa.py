@@ -61,7 +61,7 @@ def bar(gene, chr_main, start_main, nuc_main, aa_main, family, seqs):
 	try:
 		everything = []
 		#another attempt to get all seqs in seqs_sorted without messing up order
-		everthing.append([gene, chr_main, start_main, nuc_main, aa_main, "-"])
+		#everthing.append([gene, chr_main, start_main, nuc_main, aa_main, "-"])
 		#combine into one larger list 
 		for fam in family1:
 			#print fam
