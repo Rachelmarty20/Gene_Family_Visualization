@@ -20,8 +20,8 @@ import csv
 #genes that work: CDH11, APOD, APOL3!!!!, 
 
 form = cgi.FieldStorage()
-#mygene = form.getvalue("mygene")
-mygene = "APOL3"
+mygene = form.getvalue("mygene")
+#mygene = "APOL3"
 #print mygene
 #print 'hello'
 
