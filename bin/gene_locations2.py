@@ -34,9 +34,9 @@ def get_seqs(gene):
 	cursor = db.cursor()
 
 	try:
-		f = open("/var/www/html/Gene_Family_Visualization/data/flare.json", "w")
-		f_bar = open("/var/www/html/Gene_Family_Visualization/data/genes_nuc.csv", "w")
-		f_bar_aa = open("/var/www/html/Gene_Family_Visualization/data/genes.csv", "w")
+		f = open("../data/flare.json", "w")
+		f_bar = open("../data/genes_nuc.csv", "w")
+		f_bar_aa = open("../data/genes.csv", "w")
 
 	except:
 		print "couldn't open"
