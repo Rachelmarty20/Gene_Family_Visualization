@@ -28,7 +28,7 @@ mygene = form.getvalue("mygene")
 
 def get_seqs(gene):
 	#connect to db
-	db = MySQLdb.connect("localhost","root","quaker22", "gene")
+	db = MySQLdb.connect("localhost","root","Bimm185", "rmarty")
 
 	#setup cursor
 	cursor = db.cursor()
